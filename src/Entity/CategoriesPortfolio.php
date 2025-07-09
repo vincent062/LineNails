@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\CategoriesPortfolioRepository;
+use Doctrine\ORM\Mapping as ORM;
+
+#[ORM\Entity(repositoryClass: CategoriesPortfolioRepository::class)]
+class CategoriesPortfolio
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
+
+    #[ORM\Column]
+    private ?int $id_categorie_portfolio = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $nom = null;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getIdCategoriePortfolio(): ?int
+    {
+        return $this->id_categorie_portfolio;
+    }
+
+    public function setIdCategoriePortfolio(int $id_categorie_portfolio): static
+    {
+        $this->id_categorie_portfolio = $id_categorie_portfolio;
+
+        return $this;
+    }
+
+    public function getNom(): ?string
+    {
+        return $this->nom;
+    }
+
+    public function setNom(string $nom): static
+    {
+        $this->nom = $nom;
+
+        return $this;
+    }
+}

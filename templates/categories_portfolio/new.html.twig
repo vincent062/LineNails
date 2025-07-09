@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CategoriesPortfolio{% endblock %}
+
+{% block body %}
+    <h1>Create new CategoriesPortfolio</h1>
+
+    {{ include('categories_portfolio/_form.html.twig') }}
+
+    <a href="{{ path('app_categories_portfolio_index') }}">back to list</a>
+{% endblock %}
