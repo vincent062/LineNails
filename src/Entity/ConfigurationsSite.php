@@ -14,9 +14,6 @@ class ConfigurationsSite
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_config = null;
-
     #[ORM\Column(length: 255)]
     private ?string $adresse_postale = null;
 
@@ -41,18 +38,6 @@ class ConfigurationsSite
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdConfig(): ?int
-    {
-        return $this->id_config;
-    }
-
-    public function setIdConfig(int $id_config): static
-    {
-        $this->id_config = $id_config;
-
-        return $this;
     }
 
     public function getAdressePostale(): ?string

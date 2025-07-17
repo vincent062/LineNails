@@ -42,7 +42,7 @@ final class ConfigurationsSiteController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_configurations_site_show', methods: ['GET'])]
+    #[Route('/{id<\d+>}', name: 'app_configurations_site_show', methods: ['GET'])]
     public function show(ConfigurationsSite $configurationsSite): Response
     {
         return $this->render('configurations_site/show.html.twig', [
@@ -50,7 +50,7 @@ final class ConfigurationsSiteController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_configurations_site_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id<\d+>}/edit', name: 'app_configurations_site_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ConfigurationsSite $configurationsSite, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ConfigurationsSiteType::class, $configurationsSite);
@@ -68,7 +68,7 @@ final class ConfigurationsSiteController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_configurations_site_delete', methods: ['POST'])]
+    #[Route('/{id<\d+>}', name: 'app_configurations_site_delete', methods: ['POST'])]
     public function delete(Request $request, ConfigurationsSite $configurationsSite, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$configurationsSite->getId(), $request->getPayload()->getString('_token'))) {

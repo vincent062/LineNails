@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ServicesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\CategoriesService;
 
 #[ORM\Entity(repositoryClass: ServicesRepository::class)]
 class Services
@@ -13,9 +14,6 @@ class Services
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
-    #[ORM\Column]
-    private ?int $id_service = null;
 
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
@@ -32,24 +30,9 @@ class Services
     #[ORM\Column]
     private ?bool $est_actif = null;
 
-    #[ORM\Column]
-    private ?int $id_categorie_service_fk = null;
-
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdService(): ?int
-    {
-        return $this->id_service;
-    }
-
-    public function setIdService(int $id_service): static
-    {
-        $this->id_service = $id_service;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -112,15 +95,5 @@ class Services
         return $this;
     }
 
-    public function getIdCategorieServiceFk(): ?int
-    {
-        return $this->id_categorie_service_fk;
-    }
-
-    public function setIdCategorieServiceFk(int $id_categorie_service_fk): static
-    {
-        $this->id_categorie_service_fk = $id_categorie_service_fk;
-
-        return $this;
-    }
+    
 }

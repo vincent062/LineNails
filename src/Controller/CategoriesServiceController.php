@@ -42,7 +42,7 @@ final class CategoriesServiceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_categories_service_show', methods: ['GET'])]
+    #[Route('/{id<\d+>}', name: 'app_categories_service_show', methods: ['GET'])]
     public function show(CategoriesService $categoriesService): Response
     {
         return $this->render('categories_service/show.html.twig', [
@@ -50,7 +50,7 @@ final class CategoriesServiceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_categories_service_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id<\d+>}/edit', name: 'app_categories_service_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, CategoriesService $categoriesService, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CategoriesServiceType::class, $categoriesService);
@@ -68,7 +68,7 @@ final class CategoriesServiceController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_categories_service_delete', methods: ['POST'])]
+    #[Route('/{id<\d+>}', name: 'app_categories_service_delete', methods: ['POST'])]
     public function delete(Request $request, CategoriesService $categoriesService, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$categoriesService->getId(), $request->getPayload()->getString('_token'))) {

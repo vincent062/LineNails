@@ -42,7 +42,7 @@ final class ServicesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_services_show', methods: ['GET'])]
+    #[Route('/{id<\d+>}', name: 'app_services_show', methods: ['GET'])]
     public function show(Services $service): Response
     {
         return $this->render('services/show.html.twig', [
@@ -50,7 +50,7 @@ final class ServicesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_services_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id<\d+>}/edit', name: 'app_services_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Services $service, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(ServicesType::class, $service);
@@ -68,7 +68,7 @@ final class ServicesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_services_delete', methods: ['POST'])]
+    #[Route('/{id<\d+>}', name: 'app_services_delete', methods: ['POST'])]
     public function delete(Request $request, Services $service, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$service->getId(), $request->getPayload()->getString('_token'))) {

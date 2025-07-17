@@ -42,7 +42,7 @@ final class CategoriesPortfolioController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_categories_portfolio_show', methods: ['GET'])]
+    #[Route('/{id<\d+>}', name: 'app_categories_portfolio_show', methods: ['GET'])]
     public function show(CategoriesPortfolio $categoriesPortfolio): Response
     {
         return $this->render('categories_portfolio/show.html.twig', [
@@ -50,7 +50,7 @@ final class CategoriesPortfolioController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_categories_portfolio_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id<\d+>}/edit', name: 'app_categories_portfolio_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, CategoriesPortfolio $categoriesPortfolio, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CategoriesPortfolioType::class, $categoriesPortfolio);
@@ -68,7 +68,7 @@ final class CategoriesPortfolioController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_categories_portfolio_delete', methods: ['POST'])]
+    #[Route('/{id<\d+>}', name: 'app_categories_portfolio_delete', methods: ['POST'])]
     public function delete(Request $request, CategoriesPortfolio $categoriesPortfolio, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$categoriesPortfolio->getId(), $request->getPayload()->getString('_token'))) {

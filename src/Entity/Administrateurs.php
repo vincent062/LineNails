@@ -14,9 +14,6 @@ class Administrateurs
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $id_admin = null;
-
     #[ORM\Column(length: 255)]
     private ?string $nom_utilisateur = null;
 
@@ -26,18 +23,6 @@ class Administrateurs
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdAdmin(): ?int
-    {
-        return $this->id_admin;
-    }
-
-    public function setIdAdmin(int $id_admin): static
-    {
-        $this->id_admin = $id_admin;
-
-        return $this;
     }
 
     public function getNomUtilisateur(): ?string

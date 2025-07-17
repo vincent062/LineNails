@@ -42,7 +42,7 @@ final class AdministrateursController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_administrateurs_show', methods: ['GET'])]
+    #[Route('/{id<\d+>}', name: 'app_administrateurs_show', methods: ['GET'])]
     public function show(Administrateurs $administrateur): Response
     {
         return $this->render('administrateurs/show.html.twig', [
@@ -50,7 +50,7 @@ final class AdministrateursController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_administrateurs_edit', methods: ['GET', 'POST'])]
+    #[Route('/{id<\d+>}/edit', name: 'app_administrateurs_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Administrateurs $administrateur, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(AdministrateursType::class, $administrateur);
@@ -68,7 +68,7 @@ final class AdministrateursController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_administrateurs_delete', methods: ['POST'])]
+    #[Route('/{id<\d+>}', name: 'app_administrateurs_delete', methods: ['POST'])]
     public function delete(Request $request, Administrateurs $administrateur, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$administrateur->getId(), $request->getPayload()->getString('_token'))) {
