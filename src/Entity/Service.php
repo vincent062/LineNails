@@ -33,7 +33,7 @@ class Service
     private ?bool $est_actif = null;
 
     #[ORM\ManyToOne(inversedBy: 'services')]
-    private ?categorie $categorie = null;
+    private ?Categorie $categorie = null;
 
     /**
      * @var Collection<int, Portfolio>
