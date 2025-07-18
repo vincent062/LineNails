@@ -2,39 +2,39 @@
 
 namespace App\Repository;
 
-use App\Entity\Administrateurs;
+use App\Entity\Portfolio;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Administrateurs>
+ * @extends ServiceEntityRepository<Portfolio>
  */
-class AdministrateursRepository extends ServiceEntityRepository
+class PortfolioRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Administrateurs::class);
+        parent::__construct($registry, Portfolio::class);
     }
 
     //    /**
-    //     * @return Administrateurs[] Returns an array of Administrateurs objects
+    //     * @return Portfolio[] Returns an array of Portfolio objects
     //     */
     //    public function findByExampleField($value): array
     //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
+    //        return $this->createQueryBuilder('s')
+    //            ->andWhere('s.exampleField = :val')
     //            ->setParameter('val', $value)
-    //            ->orderBy('a.id', 'ASC')
+    //            ->orderBy('s.id', 'ASC')
     //            ->setMaxResults(10)
     //            ->getQuery()
     //            ->getResult()
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?Administrateurs
+    //    public function findOneBySomeField($value): ?Portfolio
     //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
+    //        return $this->createQueryBuilder('s')
+    //            ->andWhere('s.exampleField = :val')
     //            ->setParameter('val', $value)
     //            ->getQuery()
     //            ->getOneOrNullResult()
