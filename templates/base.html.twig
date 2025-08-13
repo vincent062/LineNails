@@ -20,20 +20,34 @@
     </head>
     
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">LineNails</a>
+                {# MODIFICATION 1 : Le logo pointe vers la page d'accueil #}
+                <a class="navbar-brand" href="{{ path('app_home') }}">LineNails</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_categorie_index') }}">Catégories</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('app_portfolio_index') }}">Portfolio</a>
                         </li>
+                    </ul>
+
+                    {# MODIFICATION 2 : Ajout des liens Connexion / Déconnexion #}
+                    <ul class="navbar-nav">
+                        {% if app.user %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
