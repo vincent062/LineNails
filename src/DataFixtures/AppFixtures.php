@@ -73,5 +73,18 @@ class AppFixtures extends Fixture
 
         // === 5. Envoi à la base de données ===
         $manager->flush();
+
+        $config = new ConfigurationsSite();
+        $config->setTitre('LineNails - Prothésiste Ongulaire');
+        $config->setAdressePostale('123 Rue de la Beauté, 75001 Paris');
+        $config->setNumeroTelephone('01 23 45 67 89');
+        $config->setEmail('contact@linenails.com');
+        $config->setOrdreAffichage(1); // On donne une valeur au champ obligatoire !
+        
+        $manager->persist($config);
+        
+        // On envoie tout à la base de données
+        $manager->flush();
     }
+
 }
