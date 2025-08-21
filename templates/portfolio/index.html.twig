@@ -1,81 +1,52 @@
-{# {% extends 'base.html.twig' %}
-
-{% block title %}Portfolio index{% endblock %}
-
-{% block body %}
-    <h1>Portfolio index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for portfolio in portfolios %}
-            <tr>
-                <td>{{ portfolio.id }}</td>
-                <td>{{ portfolio.nom }}</td>
-                <td>
-                    <a href="{{ path('app_portfolio_show', {'id': portfolio.id}) }}">show</a>
-                    <a href="{{ path('app_portfolio_edit', {'id': portfolio.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_portfolio_new') }}">Create new</a>
-{% endblock %} #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Portfolio{% endblock %}
+{% block title %}Portfolio - LineNails{% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="display-4">Portfolio</h1>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="display-4">Notre Portfolio</h1>
+        {# On n'affiche le bouton que si l'admin est connecté #}
+        {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('app_portfolio_new') }}" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Ajouter un projet
+                Ajouter un projet
             </a>
-        </div>
-
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            {% for portfolio in portfolios %}
-                <div class="col">
-                    <div class="card shadow-sm h-100">
-                        {# Vous pouvez ajouter une image pour chaque projet ici #}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ portfolio.nom }}</h5>
-                            
-                            {# On affiche le service associé, qui vient de la relation ! #}
-                            {% if portfolio.service %}
-                                <p class="card-text">
-                                    <small class="text-muted">
-                                        Service : {{ portfolio.service.nom }}
-                                    </small>
-                                </p>
-                            {% endif %}
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                             <a href="{{ path('app_portfolio_show', {'id': portfolio.id}) }}" class="btn btn-sm btn-outline-secondary">Voir</a>
-                             <a href="{{ path('app_portfolio_edit', {'id': portfolio.id}) }}" class="btn btn-sm btn-outline-primary">Modifier</a>
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="col-12">
-                    <div class="alert alert-info">
-                        Il n'y a aucun projet dans le portfolio pour le moment.
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
+        {% endif %}
     </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for portfolio_item in portfolios %}
+            <div class="col">
+                <div class="card shadow-sm h-100">
+      <h5 class="card-header">{{ portfolio_item.nom }}</h5>
+      
+      {# Remplacer le SVG par une vraie image quand vous en aurez #}
+      <svg ...>
+        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image du projet</text>
+      </svg>
+      
+      <div class="card-body">
+        {% if portfolio_item.service %}
+            <h6 class="card-subtitle text-muted">{{ portfolio_item.service.nom }}</h6>
+        {% endif %}
+        <p class="card-text mt-2">Une brève description de ce magnifique projet d'onglerie.</p>
+      </div>
+
+      {% if is_granted('ROLE_ADMIN') %}
+        <div class="card-footer bg-transparent">
+             <a href="..." class="btn btn-sm btn-outline-secondary">Voir</a>
+             <a href="..." class="btn btn-sm btn-outline-primary">Modifier</a>
+        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-info">
+                    Il n'y a aucun projet dans le portfolio pour le moment.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

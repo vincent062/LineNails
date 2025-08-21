@@ -1,88 +1,47 @@
-
-{# {% extends 'base.html.twig' %}
-
-{% block title %}Liste des Catégories{% endblock %}
-
-{% block body %}
-   
-    <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor01">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="#">Home
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
-{% endblock %} #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Nos Catégories{% endblock %}
+{% block title %}Prestations{% endblock %}
 
 {% block body %}
     <div class="container mt-4">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="display-4">Nos Catégories</h1>
+            <h1 class="display-4">Mes Prestations</h1>
             <a href="{{ path('app_categorie_new') }}" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Ajouter une catégorie
+                <i class="bi bi-plus-circle"></i> Ajouter une prestations
             </a>
         </div>
 
-        {# Grille responsive pour les cartes #}
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-            {% for categorie in categories %}
-                <div class="col">
-                    <div class="card shadow-sm h-100 text-center">
-                        <div class="card-body d-flex flex-column justify-content-center">
-                            <h5 class="card-title">{{ categorie.nom }}</h5>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            {# Ajoutez ici des liens si vous avez des pages show/edit #}
-                            {# 
-                            <a href="{{ path('app_categorie_show', {'id': categorie.id}) }}" class="btn btn-sm btn-outline-secondary">Voir</a>
-                            <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}" class="btn btn-sm btn-outline-primary">Modifier</a>
-                            #}
-                        </div>
-                    </div>
-                </div>
-            {% else %}
-                <div class="col-12">
-                    <div class="alert alert-info">
-                        Il n'y a aucune catégorie pour le moment.
-                    </div>
-                </div>
-            {% endfor %}
+       <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th class="text-end">Actions</th> {# <-- Nouvelle colonne #}
+                    </tr>
+                </thead>
+                <tbody>
+                {% for categorie in categories %}
+                    <tr>
+                        <td>{{ categorie.nom }}</td>
+                        <td class="text-end">
+                            {# --- DÉBUT DE L'AJOUT DU BOUTON SUPPRIMER --- #}
+                            <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-pencil"></i> Modifier
+                            </a>
+                            {# On inclut le formulaire de suppression ici #}
+                            {{ include('categorie/_delete_form.html.twig') }}
+                            {# --- FIN DE L'AJOUT --- #}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="2" class="text-center">Aucune catégorie trouvée.</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 {% endblock %}

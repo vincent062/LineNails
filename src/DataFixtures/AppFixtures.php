@@ -35,7 +35,7 @@ class AppFixtures extends Fixture
         
         // === 2. Création des Catégories ===
         $categoriesData = [
-            'Pose complète', 'Remplissage', 'Réparation d\'ongle', 'Dépose', 'Nail Art simple', 'Soin des mains'
+            'Mains','Pieds','Cils'
         ];
         foreach ($categoriesData as $nom) {
             $categorie = new Categorie();
@@ -45,22 +45,32 @@ class AppFixtures extends Fixture
         
         // === 3. Création des Services ===
         $servicesData = [
-            'Manucure Classique' => 25.00,
-            'Pédicure Complète' => 35.00,
-            'Pose de Vernis Semi-Permanent' => 30.00,
-            'Extension d\'ongles en gel' => 60.00,
+            'Manucure Classique' => [18.00,'durée'=>0],
+            'Pédicure Complète' => [30.00,'durée'=>0],
+            'Pose de Vernis Semi-Permanent' => [25.00,'durée'=>0],
+            'Extension d\'ongles en gel' => [45.00,'durée'=>0],
+            'Deco/Nail Art' => [3.00,'durée'=>0],
+            'French/Baby Boomer'=>[5.00,'durée'=>0],
+            'Depose'=> [15.00,'durée'=>0],
+            'Depose autre institut'=> [18.00,'durée'=>0],
+            'Reparation Ongle'=> [3.00,'durée'=>0],
+            'Press on Nails',
         ];
 
         $services = []; // Tableau pour stocker les objets Service
-        foreach ($servicesData as $nom => $prix) {
+        foreach ($servicesData as $nom => $details) {
             $service = new Service();
             $service->setNom($nom);
-            $service->setPrix($prix);
+            $service->setPrix($details['prix']);
+            $service->setDescription('Une description pour le service ' . $nom);
+            $service->setDureeMinutes($details['durée']);
+            $service->setEstActif(true);
             $manager->persist($service);
             $services[$nom] = $service; // On stocke l'objet pour le lier plus tard
         }
 
         // === 4. Création du Portfolio ===
+
         $portfolio1 = new Portfolio();
         $portfolio1->setNom('Jolie Pose d\'été');
         $portfolio1->setService($services['Pose de Vernis Semi-Permanent']); // Liaison directe
@@ -71,6 +81,21 @@ class AppFixtures extends Fixture
         $portfolio2->setService($services['Extension d\'ongles en gel']); // Liaison directe
         $manager->persist($portfolio2);
 
+        $portfolio3 = new Portfolio();
+        $portfolio3->setNom('Jolie Pose d\'été');
+        $portfolio3->setService($services['Pose de Vernis Semi-Permanent']); // Liaison directe
+        $manager->persist($portfolio3);
+
+        $portfolio4 = new Portfolio();
+        $portfolio4->setNom('Jolie Pose d\'été');
+        $portfolio4->setService($services['Pose de Vernis Semi-Permanent']); // Liaison directe
+        $manager->persist($portfolio4);
+
+        $portfolio5 = new Portfolio();
+        $portfolio5->setNom('Jolie Pose d\'été');
+        $portfolio5->setService($services['Pose de Vernis Semi-Permanent']); // Liaison directe
+        $manager->persist($portfolio5);
+ 
         // === 5. Envoi à la base de données ===
         $manager->flush();
     }
