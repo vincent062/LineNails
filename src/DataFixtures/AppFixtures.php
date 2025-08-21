@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Categorie;
+use App\Entity\ConfigurationsSite;
 use App\Entity\Portfolio;
 use App\Entity\Service;
 use App\Entity\User;

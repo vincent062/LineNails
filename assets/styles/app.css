@@ -1,6 +1,6 @@
-
+/* Styles existants dans app.css */
 body {
-    font-family: 'Montserrat', sans-serif; /* On applique la nouvelle police */
+    font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -12,4 +12,87 @@ body {
 
 .footer {
     background-color: #f8f9fa;
+}
+
+/* NOUVEAUX STYLES POUR LA PAGE D'ACCUEIL */
+
+/* Section Hero */
+.hero-section {
+    background: rgba(0, 0, 0, 0.2); /* Fond semi-transparent pour la lisibilité */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-logo {
+    max-height: 400px; /* Ajustez la taille de votre logo */
+    width: auto;
+}
+
+.hero-title {
+    color: #fff;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-subtitle {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Cartes de projet */
+.project-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    overflow: hidden; /* Pour que l'image ne dépasse pas les coins arrondis */
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.25)!important;
+}
+
+.card-img-placeholder {
+    height: 225px;
+    background-color: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.project-card .card-body {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.project-card .card-title {
+    color: #fff;
+}
+
+/* ... (votre CSS existant) ... */
+
+/* NOUVEAUX STYLES POUR LES CARTES D'INFORMATION */
+.info-card {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+    text-align: left; /* Pour aligner le texte à gauche */
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+}
+
+.info-card .card-header {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    color: #fff;
+}
+
+.info-card .card-title {
+    color: #fff;
+}
+
+.info-card .card-text {
+    color: rgba(255, 255, 255, 0.8);
 }
