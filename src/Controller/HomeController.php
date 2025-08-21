@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
+    #[Route('/', name: 'app_home')]
     public function index(PortfolioRepository $portfolioRepository): Response
     {
         // On récupère les 6 derniers projets du portfolio pour les afficher
