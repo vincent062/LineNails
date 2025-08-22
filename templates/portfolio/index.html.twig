@@ -3,47 +3,50 @@
 {% block title %}Portfolio - LineNails{% endblock %}
 
 {% block body %}
-<div class="container mt-5">
+<div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="display-4">Notre Portfolio</h1>
+        <h1 class="display-4">Mon Portfolio</h1>
         {# On n'affiche le bouton que si l'admin est connecté #}
         {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('app_portfolio_new') }}" class="btn btn-primary">
-                Ajouter un projet
+                <i class="bi bi-plus-circle me-2"></i>Ajouter une réalisation
             </a>
         {% endif %}
     </div>
 
+    {# On utilise la même structure de grille que la page d'accueil #}
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for portfolio_item in portfolios %}
             <div class="col">
-                <div class="card shadow-sm h-100">
-      <h5 class="card-header">{{ portfolio_item.nom }}</h5>
-      
-      {# Remplacer le SVG par une vraie image quand vous en aurez #}
-      <svg ...>
-        <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image du projet</text>
-      </svg>
-      
-      <div class="card-body">
-        {% if portfolio_item.service %}
-            <h6 class="card-subtitle text-muted">{{ portfolio_item.service.nom }}</h6>
-        {% endif %}
-        <p class="card-text mt-2">Une brève description de ce magnifique projet d'onglerie.</p>
-      </div>
+                <div class="card shadow-sm h-100 project-card">
+                    {# Pensez à ajouter une propriété "image" à votre entité Portfolio plus tard #}
+                    <div class="card-img-placeholder">
+                        <span>Image du projet</span>
+                    </div>
+                    
+                    <div class="card-body">
+                        <h5 class="card-title">{{ portfolio_item.nom }}</h5>
+                        {% if portfolio_item.service %}
+                            <p class="card-text text-white-50">{{ portfolio_item.service.nom }}</p>
+                        {% endif %}
+                    </div>
 
-      {% if is_granted('ROLE_ADMIN') %}
-        <div class="card-footer bg-transparent">
-             <a href="..." class="btn btn-sm btn-outline-secondary">Voir</a>
-             <a href="..." class="btn btn-sm btn-outline-primary">Modifier</a>
-        </div>
+                    {# Ajout des boutons d'action pour l'admin dans le footer de la carte #}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="card-footer d-flex justify-content-end gap-2">
+                             <a href="{{ path('app_portfolio_edit', {'id': portfolio_item.id}) }}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-pencil"></i> Modifier
+                             </a>
+                             {# On inclut le formulaire de suppression directement ici pour une meilleure ergonomie #}
+                             {{ include('portfolio/_delete_form.html.twig', {'portfolio': portfolio_item}) }}
+                        </div>
                     {% endif %}
                 </div>
             </div>
         {% else %}
             <div class="col-12">
                 <div class="alert alert-info">
-                    Il n'y a aucun projet dans le portfolio pour le moment.
+                    Il n'y a aucune réalisation dans le portfolio pour le moment.
                 </div>
             </div>
         {% endfor %}

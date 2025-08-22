@@ -1,4 +1,5 @@
 <?php
+// src/DataFixtures/AppFixtures.php
 
 namespace App\DataFixtures;
 
@@ -41,21 +42,23 @@ class AppFixtures extends Fixture
         foreach ($categoriesData as $nom) {
             $categorie = new Categorie();
             $categorie->setNom($nom);
+            // On ajoute une valeur par défaut pour ordre_affichage
+            $categorie->setOrdreAffichage(1); 
             $manager->persist($categorie);
         }
         
         // === 3. Création des Services ===
         $servicesData = [
-            'Manucure Classique' => [18.00,'durée'=>0],
-            'Pédicure Complète' => [30.00,'durée'=>0],
-            'Pose de Vernis Semi-Permanent' => [25.00,'durée'=>0],
-            'Extension d\'ongles en gel' => [45.00,'durée'=>0],
-            'Deco/Nail Art' => [3.00,'durée'=>0],
-            'French/Baby Boomer'=>[5.00,'durée'=>0],
-            'Depose'=> [15.00,'durée'=>0],
-            'Depose autre institut'=> [18.00,'durée'=>0],
-            'Reparation Ongle'=> [3.00,'durée'=>0],
-            'Press on Nails',
+            'Manucure Classique' => ['prix' => 18.00, 'duree' => 45],
+            'Pédicure Complète' => ['prix' => 30.00, 'duree' => 60],
+            'Pose de Vernis Semi-Permanent' => ['prix' => 25.00, 'duree' => 30],
+            'Extension d\'ongles en gel' => ['prix' => 45.00, 'duree' => 90],
+            'Deco/Nail Art' => ['prix' => 3.00, 'duree' => 15],
+            'French/Baby Boomer' => ['prix' => 5.00, 'duree' => 20],
+            'Depose' => ['prix' => 15.00, 'duree' => 20],
+            'Depose autre institut' => ['prix' => 18.00, 'duree' => 30],
+            'Reparation Ongle' => ['prix' => 3.00, 'duree' => 10],
+            'Press on Nails' => ['prix' => 35.00, 'duree' => 0],
         ];
 
         $services = []; // Tableau pour stocker les objets Service
@@ -64,53 +67,34 @@ class AppFixtures extends Fixture
             $service->setNom($nom);
             $service->setPrix($details['prix']);
             $service->setDescription('Une description pour le service ' . $nom);
-            $service->setDureeMinutes($details['durée']);
+            $service->setDureeMinutes($details['duree']);
             $service->setEstActif(true);
             $manager->persist($service);
             $services[$nom] = $service; // On stocke l'objet pour le lier plus tard
         }
 
         // === 4. Création du Portfolio ===
-
-        $portfolio1 = new Portfolio();
-        $portfolio1->setNom('Jolie Pose d\'été');
-        $portfolio1->setService($services['Pose de Vernis Semi-Permanent']); // Liaison directe
-        $manager->persist($portfolio1);
-
-        $portfolio2 = new Portfolio();
-        $portfolio2->setNom('Effet marbré sur ongles longs');
-        $portfolio2->setService($services['Extension d\'ongles en gel']); // Liaison directe
-        $manager->persist($portfolio2);
-
-        $portfolio3 = new Portfolio();
-        $portfolio3->setNom('Jolie Pose d\'été');
-        $portfolio3->setService($services['Pose de Vernis Semi-Permanent']); // Liaison directe
-        $manager->persist($portfolio3);
-
-        $portfolio4 = new Portfolio();
-        $portfolio4->setNom('Jolie Pose d\'été');
-        $portfolio4->setService($services['Pose de Vernis Semi-Permanent']); // Liaison directe
-        $manager->persist($portfolio4);
-
-        $portfolio5 = new Portfolio();
-        $portfolio5->setNom('Jolie Pose d\'été');
-        $portfolio5->setService($services['Pose de Vernis Semi-Permanent']); // Liaison directe
-        $manager->persist($portfolio5);
+        for ($i = 1; $i <= 6; $i++) {
+            $portfolio = new Portfolio();
+            $portfolio->setNom('Réalisation ' . $i);
+            // On alterne les services pour l'exemple
+            $serviceKey = ($i % 2 == 0) ? 'Pose de Vernis Semi-Permanent' : 'Extension d\'ongles en gel';
+            $portfolio->setService($services[$serviceKey]);
+            $manager->persist($portfolio);
+        }
  
-        // === 5. Envoi à la base de données ===
-        $manager->flush();
-
+        // === 5. Création de la configuration du site (CORRIGÉ) ===
         $config = new ConfigurationsSite();
-        $config->setTitre('LineNails - Prothésiste Ongulaire');
         $config->setAdressePostale('123 Rue de la Beauté, 75001 Paris');
-        $config->setNumeroTelephone('01 23 45 67 89');
-        $config->setEmail('contact@linenails.com');
-        $config->setOrdreAffichage(1); // On donne une valeur au champ obligatoire !
-        
+        $config->setTelephone('01 23 45 67 89');
+        $config->setEmailContact('contact@linenails.com');
+        $config->setHorairesOuverture('Lundi - Vendredi : 9h - 19h');
+        $config->setUrlPageFacebook('https://facebook.com/linenails');
+        $config->setUrlPageInstgram('https://instagram.com/linenails');
+        $config->setUrlPriseRdvFacebook('https://facebook.com/linenails/book');
         $manager->persist($config);
         
         // On envoie tout à la base de données
         $manager->flush();
     }
-
 }
