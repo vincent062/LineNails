@@ -3,79 +3,96 @@
 {% block title %}Accueil - LineNails, Prothésiste Ongulaire{% endblock %}
 
 {% block body %}
-<div class="container my-5">
+    <div class="container my-5">
 
-    <div class="hero-section text-center p-5 mb-5 rounded-3 shadow-lg">
-        <div class="fondlogo">
-            <img src="{{asset('images/Gemini_Generated_Image_iy11sdiy11sdiy11-removebg-preview.png')}}" alt="" class="hero-logo mb-4" />
+        <div class="hero-section text-center p-5 mb-5 rounded-3 shadow-lg">
+            <div class="fondlogo">
+                <img src="{{ asset('images/Gemini_Generated_Image_iy11sdiy11sdiy11-removebg-preview.png') }}" alt="LineNails Logo" class="hero-logo mb-4"/>
+            </div>
+            <h1 class="hero-title display-4">L'art au bout de vos doigts</h1>
+            <p class="hero-subtitle col-lg-8 mx-auto fs-5">
+                "De la pointe des ongles à la courbe des cils, je révèle votre beauté."<br>
+                "Bienvenue dans mon univers, où la passion transforme chaque détail en une signature unique pour sublimer vos mains et intensifier votre regard."
+            </p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+                <a href="#dernieres-realisations" class="btn btn-primary btn-lg px-4 gap-3">Voir mes créations</a>
+                <a href="#" class="btn btn-outline-secondary btn-lg px-4">Prendre rendez-vous</a>
+            </div>
         </div>
-        <h1 class="hero-title display-4">L'art au bout de vos doigts</h1>
-        <p class="hero-subtitle col-lg-8 mx-auto fs-5">
-            "De la pointe des ongles à la courbe des cils, je révèle votre beauté."<br> "Bienvenue dans mon univers, où la passion transforme chaque détail en une signature unique pour sublimer vos mains et intensifier votre regard."
-        </p>
-        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
-            <a href="#dernieres-realisations" class="btn btn-primary btn-lg px-4 gap-3">Voir mes créations</a>
-            <a href="#" class="btn btn-outline-secondary btn-lg px-4">Prendre rendez-vous</a>
-        </div>
-    </div>
 
-    <h2 id="dernieres-realisations" class="text-center mb-4 display-5">Mes dernières réalisations</h2>
-    
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        {% for project in projects %}
+        <h2 id="dernieres-realisations" class="text-center mb-4 display-5">Mes dernières réalisations</h2>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
             <div class="col">
                 <div class="card shadow-sm h-100 project-card">
-                    {# Pensez à ajouter une propriété "image" à votre entité Portfolio plus tard #}
-                    {# <img src="..." class="card-img-top" alt="{{ project.nom }}"> #}
-                     <div class="card-img-placeholder">
-                        <span>Image du projet</span>
+                    {# Remplacez ce div par votre image si vous le souhaitez #}
+                    {# <img src="{{ asset('images/votre-image-1.jpg') }}" class="card-img-top" alt="Description de l'image"> #}
+                    <div class="card-img-placeholder">
+                        <span>Votre photo ici</span>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">{{ project.nom }}</h5>
-                        {% if project.service %}
-                            <p class="card-text text-white-50">{{ project.service.nom }}</p>
-                        {% endif %}
+                        <h5 class="card-title">Titre de la réalisation 1</h5>
+                        <p class="card-text">Mettez ici une description, un commentaire ou le type de prestation réalisée.</p>
                     </div>
                 </div>
             </div>
-        {% else %}
-            <div class="col-12">
-                <p class="text-center">Aucun projet à afficher pour le moment.</p>
+            <div class="col">
+                <div class="card shadow-sm h-100 project-card">
+                    {# <img src="{{ asset('images/votre-image-2.jpg') }}" class="card-img-top" alt="Description de l'image"> #}
+                    <div class="card-img-placeholder">
+                        <span>Votre photo ici</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Titre de la réalisation 2</h5>
+                        <p class="card-text">Mettez ici une description, un commentaire ou le type de prestation réalisée.</p>
+                    </div>
+                </div>
             </div>
-        {% endfor %}
-    </div>
-<div class="info-section mt-5 pt-5">
-    <div class="row">
-        <div class="col-lg-4 mb-4">
-            <div class="card info-card h-100">
-                <div class="card-header">Hygiène & Qualité</div>
-                <div class="card-body">
-                    <h4 class="card-title">Votre Sécurité, Ma Priorité</h4>
-                    <p class="card-text">J'utilise du matériel stérilisé et des produits de haute qualité pour garantir des prestations impeccables et totalement sûres.</p>
+            <div class="col">
+                <div class="card shadow-sm h-100 project-card">
+                    {# <img src="{{ asset('images/votre-image-3.jpg') }}" class="card-img-top" alt="Description de l'image"> #}
+                    <div class="card-img-placeholder">
+                        <span>Votre photo ici</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Titre de la réalisation 3</h5>
+                        <p class="card-text">Mettez ici une description, un commentaire ou le type de prestation réalisée.</p>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="info-section mt-5 pt-5">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="card info-card h-100">
+                        <div class="card-header">Hygiène & Qualité</div>
+                        <div class="card-body">
+                            <h4 class="card-title">Votre Sécurité, Ma Priorité</h4>
+                            <p class="card-text">J'utilise du matériel stérilisé et des produits de haute qualité pour garantir des prestations impeccables et totalement sûres.</p>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="col-lg-4 mb-4">
-            <div class="card info-card h-100">
-                <div class="card-header">À Votre Écoute</div>
-                <div class="card-body">
-                    <h4 class="card-title">Des Conseils Personnalisés</h4>
-                    <p class="card-text">Chaque personne est unique. Je prends le temps de vous conseiller pour trouver le style qui vous correspond parfaitement.</p>
+                <div class="col-lg-4 mb-4">
+                    <div class="card info-card h-100">
+                        <div class="card-header">À Votre Écoute</div>
+                        <div class="card-body">
+                            <h4 class="card-title">Des Conseils Personnalisés</h4>
+                            <p class="card-text">Chaque personne est unique. Je prends le temps de vous conseiller pour trouver le style qui vous correspond parfaitement.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="col-lg-4 mb-4">
-            <div class="card info-card h-100">
-                <div class="card-header">Passion & Créativité</div>
-                <div class="card-body">
-                    <h4 class="card-title">L'Art au Bout des Doigts</h4>
-                    <p class="card-text">Constamment à la recherche de nouvelles tendances, je mets ma passion et ma créativité au service de votre beauté.</p>
+                <div class="col-lg-4 mb-4">
+                    <div class="card info-card h-100">
+                        <div class="card-header">Passion & Créativité</div>
+                        <div class="card-body">
+                            <h4 class="card-title">L'Art au Bout des Doigts</h4>
+                            <p class="card-text">Constamment à la recherche de nouvelles tendances, je mets ma passion et ma créativité au service de votre beauté.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-</div>
 {% endblock %}
