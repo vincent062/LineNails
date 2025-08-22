@@ -18,7 +18,7 @@ class PortfolioType extends AbstractType
             ->add('nom')
             ->add('service', EntityType::class, [
                 'class' => Service::class,
-                'choice_label' => 'id',
+                'choice_label' => 'nom',
             ])
         ;
     }

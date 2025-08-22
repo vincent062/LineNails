@@ -1,0 +1,53 @@
+{# templates/_partials/footer.html.twig #}
+<footer class="footer mt-auto py-5">
+    <div class="container">
+        <div class="row gy-4">
+            {# Colonne 1: Logo et description #}
+            <div class="col-lg-4 text-center text-lg-start">
+                <a href="{{ path('app_home') }}">
+                    <img src="{{ asset('images/logosansfond.png') }}" alt="LineNails Logo" class="footer-logo mb-3">
+                </a>
+                <p class="footer-tagline">"L'art au bout de vos doigts."</p>
+            </div>
+
+            {# Colonne 2: Liens de navigation #}
+            <div class="col-lg-2 col-6">
+                <h5>Navigation</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{{ path('app_home') }}" class="footer-link">Accueil</a></li>
+                    <li><a href="#" class="footer-link">Prestations</a></li> {# Pensez à lier la page des services #}
+                    <li><a href="{{ path('app_portfolio_index') }}" class="footer-link">Portfolio</a></li>
+                    <li><a href="#" class="footer-link">Contact</a></li> {# Pensez à créer une page contact #}
+                </ul>
+            </div>
+
+            {# Colonne 3: Coordonnées #}
+            <div class="col-lg-3 col-6">
+                <h5>Contact</h5>
+                <ul class="list-unstyled">
+                    {% if site_config.getConfig() %}
+                        <li><i class="bi bi-geo-alt-fill me-2"></i>{{ site_config.adressePostale }}</li>
+                        <li><i class="bi bi-telephone-fill me-2"></i>{{ site_config.telephone }}</li>
+                        <li><i class="bi bi-envelope-fill me-2"></i>{{ site_config.emailContact }}</li>
+                    {% endif %}
+                </ul>
+            </div>
+
+            {# Colonne 4: Réseaux Sociaux #}
+            <div class="col-lg-3 text-center text-lg-end">
+                <h5>Suivez-moi</h5>
+                <div class="social-icons">
+                    {% if site_config.getConfig() and site_config.getConfig().urlPageFacebook %}
+                        <a href="{{ site_config.getConfig().urlPageFacebook }}" target="_blank" class="social-icon"><i class="bi bi-facebook"></i></a>
+                    {% endif %}
+                    {% if site_config.getConfig() and site_config.getConfig().urlPageInstgram %}
+                        <a href="{{ site_config.getConfig().urlPageInstgram }}" target="_blank" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="text-center pt-4 mt-4 border-top border-secondary-subtle">
+            <small>&copy; {{ "now"|date("Y") }} LineNails - Tous droits réservés.</small>
+        </div>
+    </div>
+</footer>

@@ -1,6 +1,13 @@
 twig:
     file_name_pattern: '*.twig'
 
+    paths:
+        '%kernel.project_dir%/templates/_partials': partials
+
+    globals:
+        # La variable 'site_config' sera maintenant disponible dans tous les templates Twig
+        site_config: '@App\Service\SiteConfigService'
+
 when@test:
     twig:
         strict_variables: true
