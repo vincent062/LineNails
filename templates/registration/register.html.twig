@@ -1,20 +1,56 @@
-{# templates/registration/register.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription - Prenez rendez-vous{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            {# On utilise les classes "card" et "shadow-lg" pour le style #}
+            <div class="card shadow-lg" style="background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);">
+                <div class="card-body p-5">
+                    <h1 class="card-title text-center mb-4">Créer un compte</h1>
+                    <p class="text-center text-white-50 mb-4">Inscrivez-vous pour prendre rendez-vous.</p>
 
-    {{ form_errors(registrationForm) }}
+                    {{ form_start(registrationForm) }}
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                {{ form_row(registrationForm.prenom) }}
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                {{ form_row(registrationForm.nom) }}
+                            </div>
+                        </div>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+                        <div class="mb-3">
+                            {{ form_row(registrationForm.email) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(registrationForm.telephone) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(registrationForm.plainPassword) }}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(registrationForm.agreeTerms) }}
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">S'inscrire</button>
+                        </div>
+
+                    {{ form_end(registrationForm) }}
+
+                    <div class="text-center mt-4">
+                        <small>Déjà un compte ? <a href="{{ path('app_login') }}">Connectez-vous</a></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
