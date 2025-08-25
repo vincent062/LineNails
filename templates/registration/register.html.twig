@@ -6,48 +6,64 @@
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-md-8 col-lg-6">
-            {# On utilise les classes "card" et "shadow-lg" pour le style #}
-            <div class="card shadow-lg" style="background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px);">
-                <div class="card-body p-5">
-                    <h1 class="card-title text-center mb-4">Créer un compte</h1>
-                    <p class="text-center text-white-50 mb-4">Inscrivez-vous pour prendre rendez-vous.</p>
+            <div class="card shadow-lg register-card" style="background-color: rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <img src="{{ asset('images/Gemini_Generated_Image_iy11sdiy11sdiy11-removebg-preview.png') }}" alt="LineNails Logo" style="max-height: 80px;" class="mb-2">
+                        <h1 class="h3 mb-1">Prendre rendez-vous</h1>
+                        
+                    </div>
 
-                    {{ form_start(registrationForm) }}
+                    {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                {{ form_row(registrationForm.prenom) }}
+                                {{ form_label(registrationForm.prenom) }}
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    {{ form_widget(registrationForm.prenom) }}
+                                </div>
+                                <div class="text-danger">{{ form_errors(registrationForm.prenom) }}</div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                {{ form_row(registrationForm.nom) }}
+                                {{ form_label(registrationForm.nom) }}
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                    {{ form_widget(registrationForm.nom) }}
+                                </div>
+                                <div class="text-danger">{{ form_errors(registrationForm.nom) }}</div>
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            {{ form_row(registrationForm.email) }}
+                            {{ form_label(registrationForm.email) }}
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                                {{ form_widget(registrationForm.email) }}
+                            </div>
+                             <div class="text-danger">{{ form_errors(registrationForm.email) }}</div>
                         </div>
 
-                        <div class="mb-3">
-                            {{ form_row(registrationForm.telephone) }}
+                        <div class="mb-4">
+                            {{ form_label(registrationForm.telephone) }}
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                                {{ form_widget(registrationForm.telephone) }}
+                            </div>
+                            <div class="text-danger">{{ form_errors(registrationForm.telephone) }}</div>
                         </div>
 
-                        <div class="mb-3">
-                            {{ form_row(registrationForm.plainPassword) }}
-                        </div>
-
-                        <div class="mb-3">
+                        <div class="mb-4">
                             {{ form_row(registrationForm.agreeTerms) }}
                         </div>
 
-                        <div class="d-grid mt-4">
-                            <button type="submit" class="btn btn-primary btn-lg">S'inscrire</button>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
                         </div>
 
                     {{ form_end(registrationForm) }}
 
-                    <div class="text-center mt-4">
-                        <small>Déjà un compte ? <a href="{{ path('app_login') }}">Connectez-vous</a></small>
-                    </div>
+                    
                 </div>
             </div>
         </div>
