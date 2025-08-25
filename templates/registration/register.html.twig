@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Inscription - Prenez rendez-vous{% endblock %}
+{% block title %}Prendre rendez-vous{% endblock %}
 
 {% block body %}
 <div class="container my-5">
@@ -9,48 +9,44 @@
             <div class="card shadow-lg register-card" style="background-color: rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
                 <div class="card-body p-4 p-md-5">
                     <div class="text-center mb-4">
-                        <img src="{{ asset('images/Gemini_Generated_Image_iy11sdiy11sdiy11-removebg-preview.png') }}" alt="LineNails Logo" style="max-height: 80px;" class="mb-2">
-                        <h1 class="h3 mb-1">Prendre rendez-vous</h1>
-                        
+                    <img src="{{ asset('images/Gemini_Generated_Image_iy11sdiy11sdiy11-removebg-preview.png') }}" alt="LineNails Logo" style="max-height: 80px;" class="mb-2">
+                        <h1 class="h3 mb-1">Prendre rendez-vous.</h1>
+                        <p class="text-white-50">L'Art au bout de vos doigts.</p>
                     </div>
 
                     {{ form_start(registrationForm, {'attr': {'novalidate': 'novalidate'}}) }}
 
                         <div class="row">
                             <div class="col-md-6 mb-3">
-                                {{ form_label(registrationForm.prenom) }}
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-person"></i></span>
                                     {{ form_widget(registrationForm.prenom) }}
                                 </div>
-                                <div class="text-danger">{{ form_errors(registrationForm.prenom) }}</div>
+                                <div class="text-danger mt-1">{{ form_errors(registrationForm.prenom) }}</div>
                             </div>
                             <div class="col-md-6 mb-3">
-                                {{ form_label(registrationForm.nom) }}
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="bi bi-person"></i></span>
                                     {{ form_widget(registrationForm.nom) }}
                                 </div>
-                                <div class="text-danger">{{ form_errors(registrationForm.nom) }}</div>
+                                <div class="text-danger mt-1">{{ form_errors(registrationForm.nom) }}</div>
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            {{ form_label(registrationForm.email) }}
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-envelope"></i></span>
                                 {{ form_widget(registrationForm.email) }}
                             </div>
-                             <div class="text-danger">{{ form_errors(registrationForm.email) }}</div>
+                             <div class="text-danger mt-1">{{ form_errors(registrationForm.email) }}</div>
                         </div>
 
                         <div class="mb-4">
-                            {{ form_label(registrationForm.telephone) }}
                             <div class="input-group">
                                 <span class="input-group-text"><i class="bi bi-telephone"></i></span>
                                 {{ form_widget(registrationForm.telephone) }}
                             </div>
-                            <div class="text-danger">{{ form_errors(registrationForm.telephone) }}</div>
+                            <div class="text-danger mt-1">{{ form_errors(registrationForm.telephone) }}</div>
                         </div>
 
                         <div class="mb-4">
@@ -62,8 +58,6 @@
                         </div>
 
                     {{ form_end(registrationForm) }}
-
-                    
                 </div>
             </div>
         </div>

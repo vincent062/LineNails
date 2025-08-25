@@ -168,11 +168,13 @@ body {
     transform: scale(1.1);
 }
 
+/* ... (gardez tout le CSS existant au-dessus) ... */
+
 /* NOUVEAUX STYLES POUR LE FORMULAIRE D'INSCRIPTION */
 .register-card .input-group-text {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    /* On rend le fond et la bordure de l'icône transparents */
+    background-color: transparent;
+    border: none;
 }
 .register-card .form-control {
     background-color: rgba(0, 0, 0, 0.2);
@@ -208,12 +210,5 @@ body {
 .register-card a:hover {
     text-decoration: underline;
 }
-
-/* Rend le fond des icônes transparent sur la page d'inscription */
-.register-card .input-group-text {
-    background-color: transparent;
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
 /* Pour utiliser les icônes bootstrap */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
