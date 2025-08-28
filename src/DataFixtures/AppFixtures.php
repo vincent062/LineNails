@@ -60,55 +60,65 @@ class AppFixtures extends Fixture
             ['nom'=>'Press on Nails (sur commande)','prix' => 0, 'duree' => 0],
         ];
 
-        foreach ($servicesData as $nom => $details) {
+            $services = [];
+        foreach ($servicesData as $serviceData) {
             $service = new Service();
-            $service->setNom('nom');
-            $service->setPrix($details['prix']);
-            $service->setDescription('Description pour ' . $nom);
-            $service->setDureeMinutes($details['duree']);
+            $service->setNom($serviceData['nom']);
+            $service->setPrix($serviceData['prix']);
+            $service->setDescription('Description pour' . $serviceData['nom']);
+            $service->setDureeMinutes($serviceData['duree']);
             $service->setEstActif(true);
             $manager->persist($service);
-            $this->addReference($nom, $service);
+            $services[] = $service; // Stocker les services créés
         }
 
          //  Création du Portfolio 
 
         // Ma boucle pour créer mes 6 Services + Portfolio
-         for ($i = 1; $i <= 6; $i++) {
+        //  for ($i = 1; $i <= 6; $i++) {
 
         //  Création des Services 
-          $service = new Service();
-          $service->setNom('Renfort / Semi-Permanent' . $i);
+        //   $service = new Service();
+        //   $service->setNom('Renfort / Semi-Permanent' . $i);
           
-          $service = new Service();
-          $service->setNom('Capsule Américaine' . $i);
+        //   $service = new Service();
+        //   $service->setNom('Capsule Américaine' . $i);
 
-          $service = new Service();
-          $service->setNom('Popits' . $i);
+        //   $service = new Service();
+        //   $service->setNom('Popits' . $i);
 
-          $service = new Service();
-          $service->setNom('Nail Art' . $i);
+        //   $service = new Service();
+        //   $service->setNom('Nail Art' . $i);
 
-          $service = new Service();
-          $service->setNom('French / Baby Boomer' . $i);
+        //   $service = new Service();
+        //   $service->setNom('French / Baby Boomer' . $i);
 
-          $service = new Service();
-          $service->setNom('Press on Nails' . $i);
+        //   $service = new Service();
+        //   $service->setNom('Press on Nails' . $i);
     
     
-          $manager->persist($service); // On prépare la sauvegarde du nouveau service
+        //   $manager->persist($service); // On prépare la sauvegarde du nouveau service
 
          // Créer le Portfolio 
-          $portfolio = new Portfolio();
-          $portfolio->setNom('Réalisation ' . $i);
+        //   $portfolio = new Portfolio();
+        //   $portfolio->setNom('Réalisation ' . $i);
     
          // Lier directement les deux objets 
-         $portfolio->setService($service);
+        //  $portfolio->setService($service);
     
-         $manager->persist($portfolio); // On prépare la sauvegarde du nouveau portfolio
-}
+        //  $manager->persist($portfolio); // On prépare la sauvegarde du nouveau portfolio
+      // }
 
-         
+         for ($i = 1; $i <= 6; $i++) {
+            $portfolio = new Portfolio();
+            $portfolio->setNom('Réalisation ' . $i);
+
+            if (!empty($services)) {
+                $portfolio->setService($services[array_rand($services)]);
+            }
+
+            $manager->persist($portfolio);
+        }
 
  
         // Création de la configuration du site 
@@ -125,4 +135,4 @@ class AppFixtures extends Fixture
         // À la fin,flush enverra tout en base de données.
         $manager->flush();
     }
-}
+}    
