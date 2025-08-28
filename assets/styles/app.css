@@ -172,43 +172,48 @@ body {
 
 /* NOUVEAUX STYLES POUR LE FORMULAIRE D'INSCRIPTION */
 .register-card .input-group-text {
-    /* On rend le fond et la bordure de l'icône transparents */
     background-color: transparent;
     border: none;
 }
+
 .register-card .form-control {
     background-color: rgba(0, 0, 0, 0.2);
     color: #fff;
     border-color: rgba(255, 255, 255, 0.2);
 }
+
 .register-card .form-control:focus {
     color: #fff;
     background-color: rgba(0, 0, 0, 0.3);
     border-color: #e83283;
     box-shadow: 0 0 0 0.25rem rgba(232, 50, 131, 0.25);
 }
+
 .register-card .form-control::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
-.register-card .form-check-input:checked {
+
+.service-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.form-check-input:checked {
     background-color: #e83283;
     border-color: #e83283;
 }
-.register-card .form-check-label {
-    color: rgba(255, 255, 255, 0.8);
+
+/* Styles pour le calendrier */
+.form-control[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
 }
-.register-card .btn-primary {
-    --bs-btn-bg: #e83283;
-    --bs-btn-border-color: #e83283;
-    --bs-btn-hover-bg: #c52b6f;
-    --bs-btn-hover-border-color: #ba2869;
-}
-.register-card a {
-    color: #fff;
-    text-decoration: none;
-}
-.register-card a:hover {
-    text-decoration: underline;
-}
+
+
 /* Pour utiliser les icônes bootstrap */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");

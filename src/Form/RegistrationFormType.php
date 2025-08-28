@@ -1,17 +1,17 @@
 <?php
-// src/Form/RegistrationFormType.php
 
 namespace App\Form;
 
+use App\Entity\Service;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
 
 class RegistrationFormType extends AbstractType
 {
@@ -19,32 +19,37 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('prenom', TextType::class, [
-                'label' => 'Prénom',
-                'attr' => ['placeholder' => 'Votre prénom']
+                'label' => 'Prénom :',
+                'attr' => ['placeholder' => '']
             ])
             ->add('nom', TextType::class, [
-                'label' => 'Nom',
-                'attr' => ['placeholder' => 'Votre nom de famille']
+                'label' => 'Nom :',
+                'attr' => ['placeholder' => '']
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Adresse email',
-                'attr' => ['placeholder' => 'exemple@domaine.com']
+                'label' => 'E-mail :',
+                'attr' => ['placeholder' => '']
             ])
             ->add('telephone', TelType::class, [
-                'label' => 'Numéro de téléphone (optionnel)',
-                'required' => false,
-                'attr' => ['placeholder' => '0612345678']
+                'label' => 'Téléphone :',
+                'attr' => ['placeholder' => '']
             ])
-            ->add('agreeTerms', CheckboxType::class, [
-                'label' => 'J\'accepte les conditions d\'utilisation',
+            ->add('date', DateType::class, [
+                'label' => 'Date du rendez-vous :',
+                'widget' => 'single_text',
+                'attr' => ['class' => 'form-control'],
                 'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'Vous devez accepter nos conditions.',
-                    ]),
-                ],
             ])
-        ;
+            ->add('services', EntityType::class, [
+                'class' => Service::class,
+                'choice_label' => function(Service $service) {
+                    return sprintf('%s - %s €', $service->getNom(), number_format($service->getPrix(), 2));
+                },
+                'multiple' => true,
+                'expanded' => true,
+                'label' => false,
+                'mapped' => false,
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
