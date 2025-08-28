@@ -40,7 +40,6 @@ class RegistrationController extends AbstractController
             $email = (new Email())
                 ->from('no-reply@linenails.com')
                 ->to($user->getEmail())
-                // ->addCc('votre.adresse@email.com') // Mettez votre adresse en copie si vous le souhaitez
                 ->subject('Confirmation de votre demande de rendez-vous')
                 ->html($emailBody);
 

@@ -1,4 +1,5 @@
 <?php
+// src/Form/RegistrationFormType.php
 
 namespace App\Form;
 
@@ -19,26 +20,26 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('prenom', TextType::class, [
-                'label' => 'Prénom :',
-                'attr' => ['placeholder' => '']
+                'label' => 'Prénom',
+                'attr' => ['placeholder' => 'Votre prénom']
             ])
             ->add('nom', TextType::class, [
-                'label' => 'Nom :',
-                'attr' => ['placeholder' => '']
+                'label' => 'Nom',
+                'attr' => ['placeholder' => 'Votre nom de famille']
             ])
             ->add('email', EmailType::class, [
-                'label' => 'E-mail :',
-                'attr' => ['placeholder' => '']
+                'label' => 'Adresse email',
+                'attr' => ['placeholder' => 'exemple@domaine.com']
             ])
             ->add('telephone', TelType::class, [
-                'label' => 'Téléphone :',
-                'attr' => ['placeholder' => '']
+                'label' => 'Numéro de téléphone',
+                'attr' => ['placeholder' => '0612345678']
             ])
             ->add('date', DateType::class, [
-                'label' => 'Date du rendez-vous :',
+                'label' => 'Date souhaitée pour le rendez-vous',
                 'widget' => 'single_text',
                 'attr' => ['class' => 'form-control'],
-                'mapped' => false,
+                'mapped' => false, // Ce champ n'est pas lié à l'entité User
             ])
             ->add('services', EntityType::class, [
                 'class' => Service::class,
@@ -46,9 +47,9 @@ class RegistrationFormType extends AbstractType
                     return sprintf('%s - %s €', $service->getNom(), number_format($service->getPrix(), 2));
                 },
                 'multiple' => true,
-                'expanded' => true,
+                'expanded' => true, // Pour afficher comme des cases à cocher
                 'label' => false,
-                'mapped' => false,
+                'mapped' => false, // Ce champ n'est pas lié à l'entité User
             ]);
     }
 

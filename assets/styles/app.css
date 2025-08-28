@@ -80,7 +80,6 @@ body {
     color: #fff;
 }
 
-/* ... (votre CSS existant) ... */
 
 /* NOUVEAUX STYLES POUR LES CARTES D'INFORMATION */
 
@@ -168,7 +167,7 @@ body {
     transform: scale(1.1);
 }
 
-/* ... (gardez tout le CSS existant au-dessus) ... */
+
 
 /* NOUVEAUX STYLES POUR LE FORMULAIRE D'INSCRIPTION */
 .register-card .input-group-text {
@@ -193,6 +192,7 @@ body {
     color: rgba(255, 255, 255, 0.5);
 }
 
+/* Styles pour les cartes de service dans le formulaire */
 .service-card {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);

@@ -3,41 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Confirmation de votre demande</title>
-    <style>
-        body { font-family: sans-serif; padding: 20px; color: #333; }
-        .container { border: 1px solid #ddd; padding: 20px; border-radius: 5px; max-width: 600px; margin: auto; }
-        h1 { color: #d64399; }
-        ul { list-style-type: none; padding: 0; }
-        li { margin-bottom: 10px; }
-    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Bonjour {{ user.prenom }},</h1>
-        <p>
-            Nous avons bien reçu votre demande de rendez-vous chez LineNails. Voici le récapitulatif :
-        </p>
-        <ul>
-            <li><strong>Nom :</strong> {{ user.nom }} {{ user.prenom }}</li>
-            <li><strong>Email :</strong> {{ user.email }}</li>
-            <li><strong>Téléphone :</strong> {{ user.telephone }}</li>
-            <li><strong>Date souhaitée :</strong> {{ date|date('d/m/Y') }}</li>
-        </ul>
-        <h3>Prestations demandées :</h3>
-        <ul>
-            {% for service in services %}
-                <li>{{ service.nom }} ({{ service.prix|number_format(2, ',', ' ') }} €)</li>
-            {% else %}
-                <li>Aucune prestation sélectionnée.</li>
-            {% endfor %}
-        </ul>
-        <p>
-            Je vous recontacte , le plus vite possible...
-        </p>
-        <p>
-            À bientôt,<br>
-            LineNails
-        </p>
-    </div>
+    <h1>Bonjour {{ user.prenom }},</h1>
+    <p>
+        Nous avons bien reçu votre demande de rendez-vous chez LineNails. Voici le récapitulatif :
+    </p>
+    <ul>
+        <li><strong>Nom :</strong> {{ user.nom }} {{ user.prenom }}</li>
+        <li><strong>Email :</strong> {{ user.email }}</li>
+        <li><strong>Téléphone :</strong> {{ user.telephone }}</li>
+        <li><strong>Date souhaitée :</strong> {{ date|date('d/m/Y') }}</li>
+    </ul>
+    <h3>Prestations demandées :</h3>
+    <ul>
+        {% for service in services %}
+            <li>{{ service.nom }} ({{ service.prix|number_format(2, ',', ' ') }} €)</li>
+        {% else %}
+            <li>Aucune prestation sélectionnée.</li>
+        {% endfor %}
+    </ul>
+    <p>
+        Nous vous recontacterons très prochainement pour confirmer la date et l'heure de votre rendez-vous.
+    </p>
+    <p>
+        À bientôt,<br>
+        L'équipe LineNails
+    </p>
 </body>
 </html>
