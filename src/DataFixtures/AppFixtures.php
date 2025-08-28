@@ -72,42 +72,7 @@ class AppFixtures extends Fixture
             $services[] = $service; // Stocker les services créés
         }
 
-         //  Création du Portfolio 
-
-        // Ma boucle pour créer mes 6 Services + Portfolio
-        //  for ($i = 1; $i <= 6; $i++) {
-
-        //  Création des Services 
-        //   $service = new Service();
-        //   $service->setNom('Renfort / Semi-Permanent' . $i);
-          
-        //   $service = new Service();
-        //   $service->setNom('Capsule Américaine' . $i);
-
-        //   $service = new Service();
-        //   $service->setNom('Popits' . $i);
-
-        //   $service = new Service();
-        //   $service->setNom('Nail Art' . $i);
-
-        //   $service = new Service();
-        //   $service->setNom('French / Baby Boomer' . $i);
-
-        //   $service = new Service();
-        //   $service->setNom('Press on Nails' . $i);
-    
-    
-        //   $manager->persist($service); // On prépare la sauvegarde du nouveau service
-
-         // Créer le Portfolio 
-        //   $portfolio = new Portfolio();
-        //   $portfolio->setNom('Réalisation ' . $i);
-    
-         // Lier directement les deux objets 
-        //  $portfolio->setService($service);
-    
-        //  $manager->persist($portfolio); // On prépare la sauvegarde du nouveau portfolio
-      // }
+        
 
          for ($i = 1; $i <= 6; $i++) {
             $portfolio = new Portfolio();
