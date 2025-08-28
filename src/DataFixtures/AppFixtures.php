@@ -45,23 +45,24 @@ class AppFixtures extends Fixture
         
         // === 3. Création des Services ===
         $servicesData = [
-            'Manucure Classique' => ['prix' => 18.00, 'duree' => 45],
-            'Pédicure Complète' => ['prix' => 30.00, 'duree' => 60],
-            'Semi-Permanent' => ['prix' => 25.00, 'duree' => 30],
-            'Renfort Semi-Permanent' => ['prix' => 33.00, 'duree' => 30],
-            'Capsule Américaine' => ['prix' => 35.00, 'duree' => 30],
-            'Popits' => ['prix' => 45.00, 'duree' => 90],
-            'Nail Art (par ongle)' => ['prix' => 3.00, 'duree' => 15],
-            'French/Baby Boomer (par main)' => ['prix' => 5.00, 'duree' => 20],
-            'Depose' => ['prix' => 15.00, 'duree' => 20],
-            'Depose autre institut' => ['prix' => 18.00, 'duree' => 30],
-            'Reparation Ongle' => ['prix' => 3.00, 'duree' => 10],
-            'Press on Nails (sur commande)' => ['prix' => 0, 'duree' => 0],
+            ['nom' =>'Manucure Simple', 'prix' => 18.00, 'duree' => 45],
+            ['nom' =>'Pédicure Simple' , 'prix' =>20.00, 'duree' =>45],
+            ['nom' =>'Pédicure / Semi-Permanent' , 'prix' => 30.00, 'duree' => 60],
+            ['nom'=>'Semi-Permanent','prix' => 25.00, 'duree' => 30],
+            ['nom'=>'Renfort Semi-Permanent','prix' => 33.00, 'duree' => 30],
+            ['nom'=>'Capsule Américaine','prix' => 35.00, 'duree' => 30],
+            ['nom'=>'Popits','prix' => 45.00, 'duree' => 90],
+            ['nom'=>'Nail Art (par ongle)','prix' => 3.00, 'duree' => 15],
+            ['nom'=>'French/Baby Boomer (par main)','prix' => 5.00, 'duree' => 20],
+            ['nom'=>'Depose','prix' => 15.00, 'duree' => 20],
+            ['nom'=>'Depose autre institut','prix' => 18.00, 'duree' => 30],
+            ['nom'=>'Reparation Ongle','prix' => 3.00, 'duree' => 10],
+            ['nom'=>'Press on Nails (sur commande)','prix' => 0, 'duree' => 0],
         ];
 
         foreach ($servicesData as $nom => $details) {
             $service = new Service();
-            $service->setNom($nom);
+            $service->setNom('nom');
             $service->setPrix($details['prix']);
             $service->setDescription('Description pour ' . $nom);
             $service->setDureeMinutes($details['duree']);
@@ -70,10 +71,12 @@ class AppFixtures extends Fixture
             $this->addReference($nom, $service);
         }
 
-        // === 4. Création du Portfolio ===
-       // Boucle pour créer 6 paires de Service + Portfolio
+         //  Création du Portfolio 
+
+        // Ma boucle pour créer mes 6 Services + Portfolio
          for ($i = 1; $i <= 6; $i++) {
-    // === 1. Créer le Service ===
+
+        //  Création des Services 
           $service = new Service();
           $service->setNom('Renfort / Semi-Permanent' . $i);
           
@@ -95,21 +98,20 @@ class AppFixtures extends Fixture
     
           $manager->persist($service); // On prépare la sauvegarde du nouveau service
 
-    // === 2. Créer le Portfolio ===
+         // Créer le Portfolio 
           $portfolio = new Portfolio();
           $portfolio->setNom('Réalisation ' . $i);
     
-    // === 3. Lier directement les deux objets ===
-    // Pas besoin de getReference, on a la variable $service sous la main !
+         // Lier directement les deux objets 
          $portfolio->setService($service);
     
          $manager->persist($portfolio); // On prépare la sauvegarde du nouveau portfolio
 }
 
-// À la fin, un seul flush() enverra tout en base de données.
-// $manager->flush();
+         
+
  
-        // === 5. Création de la configuration du site ===
+        // Création de la configuration du site 
         $config = new ConfigurationsSite();
         $config->setAdressePostale('123 Rue de la Beauté, 75001 Paris');
         $config->setTelephone('01 23 45 67 89');
@@ -119,7 +121,8 @@ class AppFixtures extends Fixture
         $config->setUrlPageInstgram('https://instagram.com/linenails');
         $config->setUrlPriseRdvFacebook('https://facebook.com/linenails/book');
         $manager->persist($config);
-        
+
+        // À la fin,flush enverra tout en base de données.
         $manager->flush();
     }
 }
