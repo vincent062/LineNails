@@ -5,9 +5,7 @@
 {% block body %}
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="display-4">Mes créations...
-        </h1>
-        {# On n'affiche le bouton que si l'admin est connecté #}
+        <h1 class="display-4">Mes créations...</h1>
         {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('app_portfolio_new') }}" class="btn btn-primary">
                 <i class="bi bi-plus-circle me-2"></i>Ajouter une réalisation
@@ -15,30 +13,31 @@
         {% endif %}
     </div>
 
-    {# On utilise la même structure de grille que la page d'accueil #}
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for portfolio_item in portfolios %}
             <div class="col">
                 <div class="card shadow-sm h-100 project-card">
-                    {# Pensez à ajouter une propriété "image" à votre entité Portfolio plus tard #}
                     <div class="card-img-placeholder">
-                        <img src="{{ asset('images/IMG_3256.jpeg') }}" class="card-img-top" alt="Semi-Permanent + Nail Arts">
+                        {# Utilisation de l'image de l'entité, avec une image par défaut si elle n'est pas définie #}
+                        <img src="{{ asset('images/' ~ (portfolio_item.image ?: 'placeholder.jpg')) }}" class="card-img-top" alt="{{ portfolio_item.nom }}">
                     </div>
                     
                     <div class="card-body">
                         <h5 class="card-title">{{ portfolio_item.nom }}</h5>
+                        {# Affiche la description si elle existe #}
+                        {% if portfolio_item.description %}
+                            <p class="card-text">{{ portfolio_item.description }}</p>
+                        {% endif %}
                         {% if portfolio_item.service %}
                             <p class="card-text text-white-50">{{ portfolio_item.service.nom }}</p>
                         {% endif %}
                     </div>
 
-                    {# Ajout des boutons d'action pour l'admin dans le footer de la carte #}
                     {% if is_granted('ROLE_ADMIN') %}
                         <div class="card-footer d-flex justify-content-end gap-2">
                              <a href="{{ path('app_portfolio_edit', {'id': portfolio_item.id}) }}" class="btn btn-sm btn-outline-primary">
                                 <i class="bi bi-pencil"></i> Modifier
                              </a>
-                             {# On inclut le formulaire de suppression directement ici pour une meilleure ergonomie #}
                              {{ include('portfolio/_delete_form.html.twig', {'portfolio': portfolio_item}) }}
                         </div>
                     {% endif %}
