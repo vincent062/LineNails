@@ -1,4 +1,17 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="mb-3">
+        {{ form_row(form.nom, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.description, {'attr': {'class': 'form-control', 'rows': 4}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.image, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.service, {'attr': {'class': 'form-select'}}) }}
+    </div>
+    <div class="d-grid">
+        <button class="btn btn-primary btn-lg">{{ button_label|default('Enregistrer') }}</button>
+    </div>
 {{ form_end(form) }}

@@ -3,98 +3,92 @@
 {% block title %}Accueil - LineNails, Prothésiste Ongulaire{% endblock %}
 
 {% block body %}
-    <div class="container my-5">
+<div class="container my-5">
 
-        <div class="hero-section text-center p-5 mb-5 rounded-3 shadow-lg">
-            <div class="fondlogo">
-                <img src="{{ asset('images/Gemini_Generated_Image_iy11sdiy11sdiy11-removebg-preview.png') }}" alt="LineNails Logo" class="hero-logo mb-4"/>
-            </div>
-            <h1 class="hero-title display-4">L'art au bout de vos doigts</h1>
-            <p class="hero-subtitle col-lg-8 mx-auto fs-5">
-                "De la pointe des ongles à la courbe des cils, je révèle votre beauté."<br>
-                "Bienvenue dans mon univers, où la passion transforme chaque détail en une signature unique pour sublimer vos mains et intensifier votre regard."
-            </p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
-                <a href="#dernieres-realisations" class="btn btn-primary btn-lg px-4 gap-3">Voir mes créations</a>
-                <a href="{{ path('app_register') }}" class="btn btn-outline-secondary btn-lg px-4">Prendre rendez-vous</a>
-            </div>
+    <div class="hero-section text-center p-5 mb-5 rounded-3 shadow-lg">
+        <div class="fondlogo">
+            <img src="{{ asset('images/Gemini_Generated_Image_iy11sdiy11sdiy11-removebg-preview.png') }}" alt="LineNails Logo" class="hero-logo mb-4"/>
         </div>
-
-        <h2 id="dernieres-realisations" class="text-center mb-4 display-5">Mes dernières réalisations</h2>
-
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
-            <div class="col">
-                <div class="card shadow-sm h-100 project-card">
-                    {# Remplacez ce div par l'image #}
-                    {# <img src="{{ asset('images/votre-image-1.jpg') }}" class="card-img-top" alt="Description de l'image"> #}
-                    <div class="card-img-placeholder">
-                    <img src="{{ asset('images/IMG_3257.jpeg') }}" class="card-img-top" alt="">
-  
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Capsules Américaine</h5>
-                        <p class="card-text">Un jolie vert!!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm h-100 project-card">
-                    {# <img src="{{ asset('images/votre-image-2.jpg') }}" class="card-img-top" alt="Description de l'image"> #}
-                    <div class="card-img-placeholder">
-                     <img src="{{ asset('images/IMG_3260.jpeg') }}" class="card-img-top" alt="">
-   
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Semi-Permanent + French multi color + Nail Arts</h5>
-                        <p class="card-text">J'ADORE et vous...</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm h-100 project-card">
-                    {# <img src="{{ asset('images/votre-image-3.jpg') }}" class="card-img-top" alt="Description de l'image"> #}
-                    <div class="card-img-placeholder">
-                    <img src=" {{ ('images/IMG_3267.jpeg') }}" class="card-img-top" alt="Description de l'image">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Semi-Permanent + Nail Arts sur ongles naturels</h5>
-                        <p class="card-text">De jolies couleurs pour finir l'été...</p>
-                    </div>
-                </div>
-            </div>
+        <h1 class="hero-title display-4">L'art au bout de vos doigts</h1>
+        <p class="hero-subtitle col-lg-8 mx-auto fs-5">
+            "De la pointe des ongles à la courbe des cils, je révèle votre beauté."<br>
+            "Bienvenue dans mon univers, où la passion transforme chaque détail en une signature unique pour sublimer vos mains et intensifier votre regard."
+        </p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mt-4">
+            <a href="#dernieres-realisations" class="btn btn-primary btn-lg px-4 gap-3">Voir mes créations</a>
+            <a href="{{ path('app_register') }}" class="btn btn-outline-secondary btn-lg px-4">Prendre rendez-vous</a>
         </div>
-        <div class="info-section mt-5 pt-5">
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <div class="card info-card h-100">
-                        <div class="card-header">Hygiène & Qualité</div>
-                        <div class="card-body">
-                            <h4 class="card-title">Votre Sécurité, Ma Priorité</h4>
-                            <p class="card-text">J'utilise du matériel stérilisé et des produits de haute qualité pour garantir des prestations impeccables et totalement sûres.</p>
+    </div>
+
+    <h2 id="dernieres-realisations" class="text-center mb-4 display-5">Mes dernières réalisations</h2>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 mb-5">
+        {% for project in projects %}
+            <div class="col">
+                <div class="card shadow-sm h-100 project-card">
+                    <div class="card-img-placeholder">
+                        <img src="{{ asset('images/' ~ (project.image ?: 'placeholder.jpg')) }}" class="card-img-top" alt="{{ project.nom }}">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.nom }}</h5>
+                        {% if project.description %}
+                            <p class="card-text">{{ project.description }}</p>
+                        {% endif %}
+                    </div>
+                    
+                    {# Les boutons d'action n'apparaissent que pour l'admin #}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="card-footer d-flex justify-content-end gap-2">
+                             <a href="{{ path('app_portfolio_edit', {'id': project.id}) }}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-pencil"></i> Modifier
+                             </a>
+                             {{ include('portfolio/_delete_form.html.twig', {'portfolio': project}) }}
                         </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-info">
+                    Aucune réalisation à afficher pour le moment.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    {# --- SECTION DES CARTES D'INFORMATION RESTAURÉE --- #}
+    <div class="info-section mt-5 pt-5">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card info-card h-100">
+                     <div class="card-header">Hygiène & Qualité</div>
+                    <div class="card-body">
+                        <h4 class="card-title">Votre Sécurité, Ma Priorité</h4>
+                        <p class="card-text">J'utilise du matériel stérilisé et des produits de haute qualité pour garantir des prestations impeccables et totalement sûres.</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-lg-4 mb-4">
-                    <div class="card info-card h-100">
-                        <div class="card-header">À Votre Écoute</div>
-                        <div class="card-body">
-                            <h4 class="card-title">Des Conseils Personnalisés</h4>
-                            <p class="card-text">Chaque personne est unique. Je prends le temps de vous conseiller pour trouver le style qui vous correspond parfaitement.</p>
-                        </div>
+            <div class="col-lg-4 mb-4">
+                 <div class="card info-card h-100">
+                    <div class="card-header">À Votre Écoute</div>
+                    <div class="card-body">
+                        <h4 class="card-title">Des Conseils Personnalisés</h4>
+                        <p class="card-text">Chaque personne est unique. Je prends le temps de vous conseiller pour trouver le style qui vous correspond parfaitement.</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="col-lg-4 mb-4">
-                    <div class="card info-card h-100">
-                        <div class="card-header">Passion & Créativité</div>
-                        <div class="card-body">
-                            <h4 class="card-title">L'Art au Bout des Doigts</h4>
-                            <p class="card-text">Constamment à la recherche de nouvelles tendances, je mets ma passion et ma créativité au service de votre beauté.</p>
-                        </div>
+            <div class="col-lg-4 mb-4">
+                 <div class="card info-card h-100">
+                    <div class="card-header">Passion & Créativité</div>
+                    <div class="card-body">
+                        <h4 class="card-title">L'Art au Bout des Doigts</h4>
+                        <p class="card-text">Constamment à la recherche de nouvelles tendances, je mets ma passion et ma créativité au service de votre beauté.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
