@@ -5,7 +5,8 @@
 {% block body %}
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="display-4">Mes créations...</h1>
+        <h1 class="display-4">Mes créations...
+        </h1>
         {# On n'affiche le bouton que si l'admin est connecté #}
         {% if is_granted('ROLE_ADMIN') %}
             <a href="{{ path('app_portfolio_new') }}" class="btn btn-primary">
@@ -21,7 +22,7 @@
                 <div class="card shadow-sm h-100 project-card">
                     {# Pensez à ajouter une propriété "image" à votre entité Portfolio plus tard #}
                     <div class="card-img-placeholder">
-                        <span>Image du projet</span>
+                        <img src="{{ asset('images/IMG_3256.jpeg') }}" class="card-img-top" alt="Semi-Permanent + Nail Arts">
                     </div>
                     
                     <div class="card-body">
