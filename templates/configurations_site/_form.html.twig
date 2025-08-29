@@ -1,4 +1,26 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="mb-3">
+        {{ form_row(form.adresse_postale, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.telephone, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.email_contact, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.horaires_ouverture, {'attr': {'class': 'form-control', 'rows': 3}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.url_page_facebook, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.url_page_instgram, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.url_prise_rdv_facebook, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="d-grid">
+        <button class="btn btn-primary btn-lg">{{ button_label|default('Enregistrer') }}</button>
+    </div>
 {{ form_end(form) }}

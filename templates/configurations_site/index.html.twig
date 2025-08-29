@@ -1,47 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ConfigurationsSite index{% endblock %}
+{% block title %}Configuration du Site{% endblock %}
 
 {% block body %}
-    <h1>ConfigurationsSite index</h1>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-lg register-card" style="background-color: rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                <div class="card-body p-4 p-md-5">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h1 class="m-0">Configuration du Site</h1>
+                        <a href="{{ path('app_configurations_site_new') }}" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i> Créer une nouvelle configuration
+                        </a>
+                    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Adresse_postale</th>
-                <th>Telephone</th>
-                <th>Email_contact</th>
-                <th>Horaires_ouverture</th>
-                <th>Url_page_facebook</th>
-                <th>Url_page_instgram</th>
-                <th>Url_prise_rdv_facebook</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for configurations_site in configurations_sites %}
-            <tr>
-                <td>{{ configurations_site.id }}</td>
-                <td>{{ configurations_site.adressePostale }}</td>
-                <td>{{ configurations_site.telephone }}</td>
-                <td>{{ configurations_site.emailContact }}</td>
-                <td>{{ configurations_site.horairesOuverture }}</td>
-                <td>{{ configurations_site.urlPageFacebook }}</td>
-                <td>{{ configurations_site.urlPageInstgram }}</td>
-                <td>{{ configurations_site.urlPriseRdvFacebook }}</td>
-                <td>
-                    <a href="{{ path('app_configurations_site_show', {'id': configurations_site.id}) }}">show</a>
-                    <a href="{{ path('app_configurations_site_edit', {'id': configurations_site.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_configurations_site_new') }}">Create new</a>
+                    {% if configurations_sites is not empty %}
+                        {% for config in configurations_sites %}
+                            <div class="list-group">
+                                <div class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <div>
+                                        <strong>Adresse :</strong> {{ config.adressePostale }}
+                                    </div>
+                                    <a href="{{ path('app_configurations_site_edit', {'id': config.id}) }}" class="btn btn-sm btn-outline-primary mt-2 mt-md-0">
+                                        <i class="bi bi-pencil"></i> Modifier
+                                    </a>
+                                </div>
+                                <div class="list-group-item"><strong>Téléphone :</strong> {{ config.telephone }}</div>
+                                <div class="list-group-item"><strong>Email :</strong> {{ config.emailContact }}</div>
+                                <div class="list-group-item"><strong>Horaires :</strong> {{ config.horairesOuverture }}</div>
+                                <div class="list-group-item"><strong>Facebook :</strong> <a href="{{ config.urlPageFacebook }}" target="_blank">{{ config.urlPageFacebook }}</a></div>
+                                <div class="list-group-item"><strong>Instagram :</strong> <a href="{{ config.urlPageInstgram }}" target="_blank">{{ config.urlPageInstgram }}</a></div>
+                                <div class="list-group-item"><strong>RDV Facebook :</strong> <a href="{{ config.urlPriseRdvFacebook }}" target="_blank">{{ config.urlPriseRdvFacebook }}</a></div>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="alert alert-info text-center">
+                            Aucune configuration trouvée.
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
