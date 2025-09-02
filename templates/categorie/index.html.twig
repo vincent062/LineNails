@@ -1,47 +1,63 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Prestations{% endblock %}
+{% block title %}Prestations
+{% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="display-4">Mes Prestations</h1>
-            <a href="{{ path('app_categorie_new') }}" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Ajouter une prestations
-            </a>
-        </div>
+	<div class="container my-5">
+		<div class="d-flex justify-content-between align-items-center mb-4">
+			<h1 class="display-4">Mes Services...</h1>
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path('app_categorie_new') }}" class="btn btn-primary">
+					<i class="bi bi-plus-circle"></i>
+					Ajouter une catégorie
+				</a>
+			{% endif %}
+		</div>
 
-       <div class="card shadow-sm">
-        <div class="card-body">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th class="text-end">Actions</th> {# <-- Nouvelle colonne #}
-                    </tr>
-                </thead>
-                <tbody>
-                {% for categorie in categories %}
-                    <tr>
-                        <td>{{ categorie.nom }}</td>
-                        <td class="text-end">
-                            {# --- DÉBUT DE L'AJOUT DU BOUTON SUPPRIMER --- #}
-                            <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}" class="btn btn-sm btn-outline-primary">
-                                <i class="bi bi-pencil"></i> Modifier
-                            </a>
-                            {# On inclut le formulaire de suppression ici #}
-                            {{ include('categorie/_delete_form.html.twig') }}
-                            {# --- FIN DE L'AJOUT --- #}
-                        </td>
-                    </tr>
-                {% else %}
-                    <tr>
-                        <td colspan="2" class="text-center">Aucune catégorie trouvée.</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+		{% for categorie in categories %}
+			<h2 class="mb-4 mt-5 text-white">{{ categorie.nom }}</h2>
+			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+				{% for service in categorie.services %}
+					<div class="col">
+						<div class="card info-card h-100">
+							<div class="card-header">{{ service.nom }}</div>
+							<div class="card-body">
+								{% if service.description %}
+									<p class="card-text">{{ service.description }}</p>
+								{% endif %}
+							</div>
+							<div class="card-footer d-flex justify-content-between align-items-center">
+								<span class="fw-bold">{{ service.prix|number_format(2, ',', ' ') }}
+									€</span>
+								<small class="text-white-50">Durée:
+									{{ service.dureeMinutes }}
+									min</small>
+							</div>
+
+							{# --- DÉBUT DE LA SECTION ADMIN --- #}
+							{% if is_granted('ROLE_ADMIN') %}
+								<div class="card-footer d-flex justify-content-end gap-2">
+									<a href="{{ path('app_service_edit', {'id': service.id}) }}" class="btn btn-sm btn-outline-primary">
+										<i class="bi bi-pencil"></i>
+										Modifier
+									</a>
+									{# Le formulaire de suppression est généré par make:crud dans templates/service/_delete_form.html.twig #}
+									{{ include('service/_delete_form.html.twig', {'service': service}) }}
+								</div>
+							{% endif %}
+							{# --- FIN DE LA SECTION ADMIN --- #}
+
+						</div>
+					</div>
+				{% else %}
+					<div class="col-12">
+						<div class="alert alert-info">
+							Aucune prestation disponible dans cette catégorie pour le moment.
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% endfor %}
+	</div>
 {% endblock %}
