@@ -39,7 +39,8 @@ body {
     backdrop-filter: blur(10px);
     border-radius: 50%;
     padding: 10px;
-    width: fit-content;}
+    width: fit-content;
+}
 
 .hero-title {
     color: #fff;
@@ -52,6 +53,18 @@ body {
 }
 
 /* Cartes de projet */
+
+.categorieslogo{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    padding: 10px;
+    width: fit-content;
+}
+
 .project-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: none;
