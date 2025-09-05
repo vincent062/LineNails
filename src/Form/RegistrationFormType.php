@@ -13,6 +13,8 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Count;
 
 class RegistrationFormType extends AbstractType
 {
@@ -20,20 +22,20 @@ class RegistrationFormType extends AbstractType
     {
         $builder
             ->add('prenom', TextType::class, [
-                'label' => 'Prénom',
-                'attr' => ['placeholder' => 'Votre prénom']
+                'label' => 'Prénom :',
+                'attr' => ['placeholder' => '']
             ])
             ->add('nom', TextType::class, [
-                'label' => 'Nom',
-                'attr' => ['placeholder' => 'Votre nom de famille']
+                'label' => 'Nom :',
+                'attr' => ['placeholder' => '']
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Adresse email',
-                'attr' => ['placeholder' => 'exemple@domaine.com']
+                'label' => 'Email :',
+                'attr' => ['placeholder' => '']
             ])
             ->add('telephone', TelType::class, [
-                'label' => 'Numéro de téléphone',
-                'attr' => ['placeholder' => '0612345678']
+                'label' => 'Téléphone :',
+                'attr' => ['placeholder' => '']
             ])
             ->add('date', DateType::class, [
                 'label' => 'Date souhaitée pour le rendez-vous',
@@ -50,7 +52,14 @@ class RegistrationFormType extends AbstractType
                 'expanded' => true, // Pour afficher comme des cases à cocher
                 'label' => false,
                 'mapped' => false, // Ce champ n'est pas lié à l'entité User
+                'constraints' => [
+                    new Count([
+                        'min' => 1,
+                        'minMessage' => 'Vous devez sélectionner au moins une prestation.',
+                    ]),
+                ],
             ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -2,7 +2,7 @@
 
 /* Styles existants dans app.css */
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Great vibes', Raleway;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -26,16 +26,15 @@ body {
     backdrop-filter: blur(15px);
     background-color: rgba(232, 248, 248, 0.116);/* Fond semi-transparent pour la lisibilité */
     border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1rem 3rem rgb(0, 0, 0)!important;
 }
 
 .hero-logo {
-    
     max-height: 400px; /* Ajustez la taille de votre logo */
     width: auto;
     
 }
 .fondlogo{
-
     backdrop-filter: blur(10px);
     border-radius: 50%;
     padding: 10px;
@@ -43,12 +42,14 @@ body {
 }
 
 .hero-title {
-    color: #fff;
+    font-family: 'Dancing Script', cursive;
+    color: #111111;
     font-weight: 700;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero-subtitle {
+    font-family: sans-serif;
     color: rgba(255, 255, 255, 0.85);
 }
 
@@ -73,7 +74,7 @@ body {
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 1rem 3rem rgba(0,0,0,.25)!important;
+    box-shadow: 0 1rem 3rem rgb(0, 0, 0)!important;
 }
 
 .card-img-placeholder {
@@ -90,7 +91,7 @@ body {
 }
 
 .project-card .card-title {
-    color: #fff;
+    color: #080808;
 }
 
 
@@ -102,35 +103,161 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: transform 0.3s ease;
     text-align: left; /* Pour aligner le texte à gauche */
+     /* Effet au survol */
+    transform: translateY(-5px);
+    background-color: rgba(209, 19, 177, 0.562);
 }
 
 .info-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 1rem 3rem rgb(0, 0, 0)!important;
 }
 
 .info-card .card-header {
-    background-color: rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgb(207, 16, 175);
+    border-bottom: 1px solid rgba(209, 17, 209, 0.986);
     font-weight: bold;
     color: #fff;
 }
 
 .info-card .card-title {
-    color: #fff;
+    color: #0e0e0e;
 }
 
 .info-card .card-text {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgb(27, 26, 26);
 }
 
- STYLES DU FOOTER
-*/
+
+/* --- NOUVEAUX STYLES POUR LE FORMULAIRE DE RENDEZ-VOUS --- */
+
+
+/* Carte principale du formulaire */
+.register-card {
+    font-family:'Dancing Script', cursive;
+    background-color: rgba(149, 34, 194, 0.767); /* Fond un peu plus sombre et violet */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px; /* Coins plus arrondis */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Police stylisée pour le titre du formulaire */
+.register-card h1.h3 {
+    font-size: 3.2rem; /* Augmenter la taille */
+    font-weight: 400; /* La police script est déjà stylisée, pas besoin de gras */
+    margin-bottom: 0.25rem !important;
+}
+
+/* Ajuster les labels pour utiliser la nouvelle police de base */
+.register-card .form-label
+.register-card .text-white-50{
+    font-weight: 500;
+    /* Augmenter la taille pour plus de visibilité  */
+    font-size: 1.5rem;  
+    color: rgb(0, 0, 0);
+}
+
+/* Titres et textes */
+.register-card h1 {
+    font-weight: 700;
+    color: #0f0f0f;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.register-card p, .register-card h5 {
+    color: rgba(7, 7, 7, 0.9);
+}
+
+/* Style général des champs de saisie */
+.register-card .form-control {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #0a0a0a;
+    border-radius: 8px; /* Coins arrondis pour les champs */
+    padding: 0.9rem 1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Placeholder des champs */
+.register-card .form-control::placeholder {
+    color: rgba(10, 10, 10, 0.6);
+}
+
+/* Effet au focus des champs */
+.register-card .form-control:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: #e83283;
+    box-shadow: 0 0 0 0.25rem rgba(232, 50, 131, 0.25);
+}
+
+/* Style du calendrier */
+.register-card input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1) brightness(1.2); /* Icône blanche et plus visible */
+    /* cursor: pointer; */
+    /* Effet au survol */
+    transform: translateY(-5px);
+    background-color: rgba(209, 19, 177, 0.562);
+}
+
+/* ---- Style des cartes de PRESTATIONS ---- */
+
+/* Cache la case à cocher par défaut */
+.service-card .form-check-input {
+    display: none;
+}
+
+/* Style de base de la carte de prestation */
+.service-card {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Effet au survol */
+.service-card:hover {
+    transform: translateY(-5px);
+    background-color: rgba(209, 19, 177, 0.562);
+}
+
+/* Style de la carte LORSQU'ELLE EST SÉLECTIONNÉE */
+.service-card-wrapper:has(input:checked) .service-card {
+    background-color: rgba(232, 50, 131, 0.2);
+    border-color: #e83283;
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgb(235, 3, 107);
+}
+
+.service-card .form-check-label {
+    width: 100%;
+    font-weight: 500;
+}
+
+/* Bouton d'envoi */
+.btn-primary {
+    padding: 0.9rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+ /* STYLES DU FOOTER */
+
 .footer {
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.8);
+    color: rgb(5, 5, 5);
 }
 
 .footer-logo {
@@ -140,7 +267,7 @@ body {
 
 .footer-tagline {
     font-style: italic;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(5, 5, 5, 0.7);
 }
 
 .footer h5 {
@@ -153,7 +280,7 @@ body {
 }
 
 .footer-link {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(10, 10, 10, 0.8);
     text-decoration: none;
     transition: color 0.2s ease-in-out;
 }
@@ -181,51 +308,6 @@ body {
 }
 
 
-
-/* NOUVEAUX STYLES POUR LE FORMULAIRE D'INSCRIPTION */
-.register-card .input-group-text {
-    background-color: transparent;
-    border: none;
-}
-
-.register-card .form-control {
-    background-color: rgba(0, 0, 0, 0.2);
-    color: #fff;
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.register-card .form-control:focus {
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-color: #e83283;
-    box-shadow: 0 0 0 0.25rem rgba(232, 50, 131, 0.25);
-}
-
-.register-card .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.5);
-}
-
-/* Styles pour les cartes de service dans le formulaire */
-.service-card {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
-}
-
-.service-card:hover {
-    background-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-5px);
-}
-
-.form-check-input:checked {
-    background-color: #e83283;
-    border-color: #e83283;
-}
-
-/* Styles pour le calendrier */
-.form-control[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-}
 
 
 /* Pour utiliser les icônes bootstrap */
