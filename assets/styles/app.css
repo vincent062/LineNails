@@ -8,7 +8,7 @@
 /* Cible les liens de navigation et le titre "Accueil" */
 .navbar .navbar-brand,
 .navbar .nav-link {
-    color: #000 !important;  /* On force la couleur noire. !important est utile ici pour surcharger Bootstrap. */
+    color: #000 !important;  /* On force la couleur noire. !important est utile,pour surcharger Bootstrap. */
     font-weight: 600; /* Texte un peu plus en gras pour une meilleure lisibilité. */
 }
 
@@ -164,7 +164,7 @@ body {
 /* Carte principale du formulaire */
 .register-card {
     font-family:'Dancing Script', cursive;
-    background-color: rgb(149, 34, 194); /* Fond un peu plus sombre et violet */
+    background-color: rgba(189, 34, 194, 0.664); /* Fond un peu plus sombre et violet */
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.2);
