@@ -9,7 +9,7 @@
 				<img src="{{ asset('images/Gemini_Generated_Image_iy11sdiy11sdiy11-removebg-preview.png') }}" alt="LineNails Logo" class="hero-logo mb-4"/>
 	    </div>
 		<div class="d-flex justify-content-between align-items-center mb-4">
-			<h1 class="display-4">Mes Services...</h1>
+			{# <h1 class="display-4 services-title">Mes Services...</h1> #}
 			{# Apparition du bouton en mode AMIN #}
 			{% if is_granted('ROLE_ADMIN') %}
 				<a href="{{ path('app_categorie_new') }}" class="btn btn-primary">
@@ -20,7 +20,7 @@
 		</div>
 
 		{% for categorie in categories %}
-			<h2 class="mb-4 mt-5 text-white">{{ categorie.nom }}</h2>
+			<h2 class="mb-4 mt-5 text-black services-title">{{ categorie.nom }}</h2>
 			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 				{% for service in categorie.services %}
 					<div class="col">

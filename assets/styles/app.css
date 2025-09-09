@@ -92,6 +92,8 @@ body {
     border-radius: 50%;
     padding: 10px;
     width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .project-card {
@@ -362,7 +364,13 @@ body {
     transform: scale(1.1);
 }
 
-
+/* Style pour le titre de la page des services */
+.services-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem; /* Ajustez la taille si nécessaire */
+    color: black; /* Assurez-vous que le texte est bien visible */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre portée pour la lisibilité */
+}
 
 
 /* Pour utiliser les icônes bootstrap */
