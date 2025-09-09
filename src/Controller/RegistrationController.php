@@ -38,7 +38,7 @@ class RegistrationController extends AbstractController
 
             // Création et envoi de l'e-mail
             $email = (new Email())
-                ->from('no-reply@linenails.com')
+                ->from('no-reply@LineNails.com')
                 ->to($user->getEmail())
                 ->subject('Confirmation de votre demande de rendez-vous')
                 ->html($emailBody);
