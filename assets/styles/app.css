@@ -63,12 +63,28 @@ body {
     width: auto;
     
 }
-.fondlogo{
+/* .fondlogo{
     backdrop-filter: blur(10px);
     border-radius: 50%;
     padding: 10px;
     width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+} */
+.logo-container {
+    display: block; /* Assure que margin: auto fonctionne */
+    width: fit-content; /* S'adapte à la taille du logo */
+    margin-left: auto; /* Centre horizontalement */
+    margin-right: auto; /* Centre horizontalement */
+    padding: 10px;
+    border-radius: 50%;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Pour la compatibilité avec Safari */
+    background-color: rgba(163, 153, 153, 0.671); /* Léger fond pour que l'effet de flou soit visible */
+    margin-bottom: 1rem; /* Ajoute un peu d'espace en dessous */
 }
+
+
 
 .hero-title {
     font-family: 'Dancing Script', cursive;

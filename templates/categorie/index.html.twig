@@ -5,7 +5,7 @@
 
 {% block body %}
 	<div class="container my-5">
-	    <div class="categorieslogo">
+	    <div class="logo-container">
 				<img src="{{ asset('images/Gemini_Generated_Image_iy11sdiy11sdiy11-removebg-preview.png') }}" alt="LineNails Logo" class="hero-logo mb-4"/>
 	    </div>
 		<div class="d-flex justify-content-between align-items-center mb-4">
@@ -20,7 +20,7 @@
 		</div>
 
 		{% for categorie in categories %}
-			<h2 class="mb-4 mt-5 text-black services-title">{{ categorie.nom }}</h2>
+			<h1 class="mb-4 mt-5 text-black services-title">{{ categorie.nom }}</h1>
 			<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
 				{% for service in categorie.services %}
 					<div class="col">
