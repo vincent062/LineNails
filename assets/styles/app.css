@@ -188,6 +188,11 @@ body {
     margin-bottom: 0.25rem !important;
 }
 
+/* Style pour le titre de la section des prestations */
+.prestation-title {
+    font-size: 1.8rem !important
+}
+
 /* Ajuster les labels pour utiliser la nouvelle police de base */
 .register-card .form-label
 .register-card .text-white-50{
@@ -248,9 +253,9 @@ body {
                          /* STYLE CARTES DE PRESTATIONS pour prise de rendez vous /*/
 
 /* Cache la case à cocher par défaut */
-.service-card .form-check-input {
+/* .service-card .form-check-input {
     display: none;
-}
+} */
 
 /* Style de base de la carte de prestation */
 .service-card {
@@ -264,7 +269,7 @@ body {
 .service-card:hover {
     transform: translateY(-5px);
     background-color: rgba(226, 14, 191, 0.808);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0);
 }
 
 
@@ -276,7 +281,7 @@ body {
 /* Effet au survol */
 .service-card:hover {
     transform: translateY(-5px);
-    background-color: rgba(226, 14, 191, 0.808);
+    background-color: rgba(247, 6, 207, 0.993);
 }
 
 /* Style de la carte LORSQU'ELLE EST SÉLECTIONNÉE */
@@ -284,13 +289,13 @@ body {
     background-color: rgba(232, 50, 131, 0.2);
     border-color: #e83283;
     transform: translateY(-2px);
-    box-shadow: 0 0 15px rgb(235, 3, 107);
+    box-shadow: 0 0 15px rgb(247, 1, 112);
 }
 
 .service-card .form-check-label {
     width: 100%;
     font-weight: 500;
-     font-size: 1.3rem; /* jouer avec la taille de l'écriture*/
+    font-size: 1.2rem; /* jouer avec la taille de l'écriture*/
 }
 
 /* Bouton d'envoi */
@@ -313,7 +318,7 @@ body {
 .footer {
     background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
-    /* -webkit-backdrop-filter: blur(10px); */
+    -webkit-backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     color: rgb(5, 5, 5);
 }
@@ -401,7 +406,7 @@ body {
     font-family: 'Great Vibes', cursive;
     font-size: 3rem; /* Ajustez la taille si nécessaire */
     color: black; /* Assurez-vous que le texte est bien visible */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre portée pour la lisibilité */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0); /* Ombre portée pour la lisibilité */
 }
 
 /* Pour utiliser les icônes bootstrap */
