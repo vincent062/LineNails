@@ -11,17 +11,31 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Uid\Uuid;
 
 class RegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
-    {
+
+     public function register(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer, UserPasswordHasherInterface $passwordHasher): Response
+    {    
+        
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Générer un mot de passe aléatoire et sécurisé
+            $randomPassword = Uuid::v4()->toBase32(); // Crée une chaîne de caractères aléatoire
+            
+            // Hasher et définir le mot de passe pour l'utilisateur
+            $user->setPassword(
+                $passwordHasher->hashPassword(
+                    $user,
+                    $randomPassword
+                )
+            );
             $entityManager->persist($user);
             $entityManager->flush();
 

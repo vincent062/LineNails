@@ -236,26 +236,24 @@ body {
     box-shadow: 0 0 0 0.25rem rgba(232, 50, 131, 0.25);
 }
 
-/* Style du calendrier */
+/* Style pour le champ de date en entier */
+.register-card input[type="date"] {
+    position: relative; /* Nécessaire pour le positionnement de l'icône */
+    cursor: pointer;    /* Applique le curseur main sur tout le champ */
+}
+
+/* Style de l'icône du calendrier */
 .register-card input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1); /* Icône blanche et plus visible */
-    cursor: pointer;
-    transition: transform 0.2s ease; /* Préparer l'animation */
+    filter: invert(1);
+    transition: transform 0.2s ease; /* On garde la transition ici */
 }
 
 /* Effet au survol de l'icône */
 .register-card input[type="date"]::-webkit-calendar-picker-indicator:hover {
-    transform: scale(1.2); /* Grossit l'icône au survol */
-   
+    transform: scale(1.2); /* Applique le grossissement au survol */
 }
 
-
-                         /* STYLE CARTES DE PRESTATIONS pour prise de rendez vous /*/
-
-/* Cache la case à cocher par défaut */
-/* .service-card .form-check-input {
-    display: none;
-} */
+                         /* STYLE CARTES DE PRESTATIONS pour prise de rendez vous /*
 
 /* Style de base de la carte de prestation */
 .service-card {
