@@ -144,7 +144,7 @@ class Service
     public function removePortfolio(Portfolio $portfolio): static
     {
         if ($this->portfolios->removeElement($portfolio)) {
-            // set the owning side to null (unless already changed)
+
             if ($portfolio->getService() === $this) {
                 $portfolio->setService(null);
             }

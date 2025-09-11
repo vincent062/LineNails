@@ -49,7 +49,7 @@ class RegistrationFormType extends AbstractType
                     return sprintf('%s - %s €', $service->getNom(), number_format($service->getPrix(), 2));
                 },
                 'multiple' => true,
-                'expanded' => true, // Pour afficher comme des cases à cocher
+                'expanded' => true, // Pour afficher des cases à cocher
                 'label' => false,
                 'mapped' => false, // Ce champ n'est pas lié à l'entité User
                 'constraints' => [

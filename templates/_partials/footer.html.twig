@@ -4,7 +4,7 @@
 		<div
 			class="row gy-4">
 			{# Colonne 1: Logo et description #}
-			<div class="col-lg-4 text-center text-lg-start">
+			<div class="col-lg-4 text-center">
 				<a href="{{ path('app_home') }}">
 					<div class="logo-container">
 						<img src="{{ asset('images/Gemini_Generated_Image_iy11sdiy11sdiy11-removebg-preview.png') }}" alt="LineNails Logo" class="footer-logo mb-2">
@@ -14,7 +14,7 @@
 			</div>
 
 			{# Colonne 2: Coordonnées #}
-			<div class="col-lg-3 col-6">
+			<div class="col-lg-3 col-6 text-center">
 				<h5>Contact</h5>
 				<ul class="list-unstyled">
 					{% set config = site_config.getConfig() %}
@@ -32,7 +32,7 @@
 				</ul>
 			</div>
 
-			<div class="col-lg-2 col-6">
+			<div class="col-lg-2 col-6 text-center">
 				<h5>Légal</h5>
 				<ul class="list-unstyled">
 					<li>
