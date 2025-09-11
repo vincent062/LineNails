@@ -183,7 +183,7 @@ body {
 
 /* Police stylisée pour le titre du formulaire */
 .register-card h1.h3 {
-    font-size: 3.2rem; /* Augmenter la taille */
+    font-size: 4rem; /* Augmenter la taille */
     font-weight: 400; /* La police script est déjà stylisée, pas besoin de gras */
     margin-bottom: 0.25rem !important;
 }
@@ -218,6 +218,7 @@ body {
     transition: all 0.2s ease-in-out;
 }
 
+
 /* Placeholder des champs */
 .register-card .form-control::placeholder {
     color: rgba(10, 10, 10, 0.6);
@@ -244,7 +245,7 @@ body {
 }
 
 
-                         /* STYLE DES CARTES DE PRESTATIONS / PRISE DE RENDEZ VOUS */
+                         /* STYLE CARTES DE PRESTATIONS pour prise de rendez vous /*/
 
 /* Cache la case à cocher par défaut */
 .service-card .form-check-input {
@@ -266,13 +267,6 @@ body {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
 }
 
-
-
-/* 2. Style au survol */
-.service-card:hover {
-    /* L'ombre s'appliquera en 0.3 seconde */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-}
 
 .service-card .card-body .form-check-label {
     color: rgb(5, 5, 5)!important;
@@ -296,14 +290,14 @@ body {
 .service-card .form-check-label {
     width: 100%;
     font-weight: 500;
-     font-size: 1.2rem; /* jouer avec la taille de l'écriture*/
+     font-size: 1.3rem; /* jouer avec la taille de l'écriture*/
 }
 
 /* Bouton d'envoi */
 .btn-primary {
     color: #000000!important; 
     padding: 0.9rem 1.5rem;
-    font-size: 1.1rem;
+    font-size: 1.3rem!important;
     font-weight: bold;
     border-radius: 8px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -371,6 +365,37 @@ body {
     transform: scale(1.1);
 }
 
+/* Style pour le texte des pages légales (Mentions & Confidentialité) */
+
+.legal-content {
+    /* Applique une police de caractères standard et lisible */
+    font-family: sans-serif !important; 
+}
+
+.legal-content,
+.legal-content h1,
+.legal-content h2,
+.legal-content p,
+.legal-content strong,
+.legal-content li {
+    color: #000 !important; /* Force la couleur du texte en noir */
+}
+
+.legal-content a {
+    color: #d64399 !important; /* Utilise une des couleurs rose/violette du thème pour les liens */
+    text-decoration: underline !important;
+}
+
+.legal-content a:hover {
+    color: #333 !important; /* Un gris foncé au survol */
+}
+
+/* On garde le titre principal de la carte avec la police du thème */
+.legal-content .h3 {
+    font-family: 'Dancing Script', cursive !important;
+}
+
+
 /* Style pour le titre de la page des services */
 .services-title {
     font-family: 'Great Vibes', cursive;
@@ -378,7 +403,6 @@ body {
     color: black; /* Assurez-vous que le texte est bien visible */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Ombre portée pour la lisibilité */
 }
-
 
 /* Pour utiliser les icônes bootstrap */
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");

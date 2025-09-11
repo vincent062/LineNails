@@ -1,49 +1,73 @@
 {# templates/_partials/footer.html.twig #}
 <footer class="footer mt-auto py-4">
-    <div class="container">
-        <div class="row gy-4">
-            {# Colonne 1: Logo et description #}
-            <div class="col-lg-4 text-center text-lg-start">
-                <a href="{{ path('app_home') }}">
-                    <img src="{{ asset('images/logosansfond.png') }}" alt="LineNails Logo" class="footer-logo mb-2">
-                </a>
-                <p class="footer-tagline">"L'art au bout de vos doigts."</p>
-            </div>
+	<div class="container">
+		<div
+			class="row gy-4">
+			{# Colonne 1: Logo et description #}
+			<div class="col-lg-4 text-center text-lg-start">
+				<a href="{{ path('app_home') }}">
+					<div class="logo-container">
+						<img src="{{ asset('images/Gemini_Generated_Image_iy11sdiy11sdiy11-removebg-preview.png') }}" alt="LineNails Logo" class="footer-logo mb-2">
+					</div>
+				</a>
+				<p class="footer-tagline">"L'art au bout de vos doigts."</p>
+			</div>
 
-            {# Colonne 2: Coordonnées #}
-            <div class="col-lg-3 col-6">
-                <h5>Contact</h5>
-                <ul class="list-unstyled">
-                    {% set config = site_config.getConfig() %}
-                    {% if config %}
-                        <li><i class="bi bi-geo-alt-fill me-2"></i>{{ config.adressePostale }}</li>
-                        <li><i class="bi bi-telephone-fill me-2"></i>{{ config.telephone }}</li>
-                        <li><i class="bi bi-envelope-fill me-2"></i>{{ config.emailContact }}</li>
-                    {% endif %}
-                </ul>
-            </div>
+			{# Colonne 2: Coordonnées #}
+			<div class="col-lg-3 col-6">
+				<h5>Contact</h5>
+				<ul class="list-unstyled">
+					{% set config = site_config.getConfig() %}
+					{% if config %}
+						<li>
+							<i class="bi bi-geo-alt-fill me-2"></i>
+							{{ config.adressePostale }}</li>
+						<li>
+							<i class="bi bi-telephone-fill me-2"></i>
+							{{ config.telephone }}</li>
+						<li>
+							<i class="bi bi-envelope-fill me-2"></i>
+							{{ config.emailContact }}</li>
+					{% endif %}
+				</ul>
+			</div>
 
-            {# Colonne 3: Réseaux Sociaux #}
-            <div class="col-lg-3 text-center text-lg-end">
-                <h5>Suivez-moi</h5>
-                <div class="social-icons">
-                    {% set config = site_config.getConfig() %}
-                    {% if config and config.urlPageFacebook %}
-                        <a href="{{ config.urlPageFacebook }}" target="_blank" class="social-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" style="height: 48px;">
-                        </a>
-                    {% endif %}
-                    {% if config and config.urlPageInstgram %}
-                        <a href="{{ config.urlPageInstgram }}" target="_blank" class="social-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/50px-Instagram_icon.png" alt="Instagram Logo" style="height: 48px;">
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-        
-        <div class="text-center pt-3 mt-3 border-top border-secondary-subtle">
-            <small>&copy; {{ "now"|date("Y") }} LineNails - Tous droits réservés.</small>
-        </div>
-    </div>
+			<div class="col-lg-2 col-6">
+				<h5>Légal</h5>
+				<ul class="list-unstyled">
+					<li>
+						<a href="{{ path('app_legal_mentions') }}" class="footer-link">Mentions légales</a>
+					</li>
+
+					<li>
+						<a href="{{ path('app_legal_privacy') }}" class="footer-link">Politique de confidentialité</a>
+					</li>
+				</ul>
+			</div>
+
+			{# Colonne 3: Réseaux Sociaux #}
+			<div class="col-lg-3 text-center text-lg-end">
+				<h5>Suivez-moi</h5>
+				<div class="social-icons">
+					{% set config = site_config.getConfig() %}
+					{% if config and config.urlPageFacebook %}
+						<a href="{{ config.urlPageFacebook }}" target="_blank" class="social-icon">
+							<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" style="height: 48px;">
+						</a>
+					{% endif %}
+					{% if config and config.urlPageInstgram %}
+						<a href="{{ config.urlPageInstgram }}" target="_blank" class="social-icon">
+							<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/50px-Instagram_icon.png" alt="Instagram Logo" style="height: 48px;">
+						</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center pt-3 mt-3 border-top border-secondary-subtle">
+			<small>&copy;
+				{{ "now"|date("Y") }}
+				LineNails - Tous droits réservés.</small>
+		</div>
+	</div>
 </footer>

@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mentions Légales - LineNails{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10 col-lg-8">
+            {# On utilise les mêmes classes pour un style cohérent #}
+            <div class="card shadow-lg register-card legal-content">
+                <div class="card-body p-4 p-md-5">
+                    <div class="text-center mb-4">
+                        <div class="logo-container">
+                        <img src="{{ asset('images/Gemini_Generated_Image_iy11sdiy11sdiy11-removebg-preview.png') }}" alt="LineNails Logo" style="max-height: 80px;" class="mb-2">
+                        </div>
+                        <h1 class="h3 mb-1">Mentions Légales</h1>
+                    </div>
+                    <hr class="mb-4">
+
+                    <p>Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique, il est précisé aux utilisateurs du site LineNails l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.</p>
+
+                    <h2 class="h4 mt-4">Édition du site</h2>
+                    <p>
+                        Le présent site, accessible à l’URL <strong>[Mettre l'URL de votre site]</strong>, est édité par :<br>
+                        <strong>[Votre Nom et Prénom ou Raison Sociale]</strong><br>
+                        Statut : [Ex: Auto-entrepreneur]<br>
+                        Adresse : [Votre adresse professionnelle complète]<br>
+                        Numéro SIRET : [Votre numéro SIRET]<br>
+                        <span class="text-muted fst-italic">[Optionnel : "TVA non applicable, art. 293 B du CGI"]</span><br>
+                        Adresse e-mail : <a href="mailto:[Votre e-mail]">[Votre e-mail]</a><br>
+                        Téléphone : [Votre numéro de téléphone]
+                    </p>
+
+                    <h2 class="h4 mt-4">Directeur de la publication</h2>
+                    <p>Le Directeur de la publication du site est <strong>[Votre Nom et Prénom]</strong>.</p>
+
+                    <h2 class="h4 mt-4">Hébergement</h2>
+                    <p>
+                        Le site est hébergé par <strong>[Nom de l'hébergeur]</strong>.<br>
+                        Adresse : [Adresse de l'hébergeur]<br>
+                        Téléphone : [Numéro de l'hébergeur]
+                    </p>
+                    
+                    <h2 class="h4 mt-4">Propriété intellectuelle</h2>
+                    <p>L'ensemble des éléments de ce site, y compris les textes, graphismes, logos, et photographies des réalisations, sont la propriété exclusive de [Votre Nom ou Raison Sociale] sauf mention contraire. Toute reproduction, distribution, modification ou utilisation sans l'autorisation préalable écrite est strictement interdite.</p>
+
+                    <h2 class="h4 mt-4">Données personnelles</h2>
+                    <p>Le traitement de vos données à caractère personnel est régi par notre <a href="{{ path('app_legal_privacy') }}">Politique de Confidentialité</a>, conformément au Règlement Général sur la Protection des Données (RGPD) 2016/679 du 27 avril 2016.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
