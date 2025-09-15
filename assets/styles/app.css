@@ -253,7 +253,7 @@ body {
     transform: scale(1.2); /* Applique le grossissement au survol */
 }
 
-                         /* STYLE CARTES DE PRESTATIONS pour prise de rendez vous /*
+                         /* STYLE DES CARTES DE PRESTATIONS pour prise de rendez vous /*
 
 /* Style de base de la carte de prestation */
 .service-card {
@@ -273,7 +273,6 @@ body {
 
 .service-card .card-body .form-check-label {
     color: rgb(5, 5, 5)!important;
-    /* font-weight: 600!important; */
 }
 
 /* Effet au survol */
@@ -309,6 +308,14 @@ body {
 .btn-primary:hover {
     transform: scale(1.02);
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+                        /* Style pour le texte de la configuration du site */ 
+                        
+.register-card .list-group-item,
+.register-card .list-group-item strong,
+.register-card .list-group-item a {
+    color: #000 !important; /* Force la couleur du texte en noir */
 }
 
                          /* STYLE DU FOOTER */
@@ -368,7 +375,7 @@ body {
     transform: scale(1.1);
 }
 
-/* Style pour le texte des pages légales (Mentions & Confidentialité) */
+                  /* Style pour le texte des pages légales (Mentions & Confidentialité) */
 
 .legal-content {
     /* Applique une police de caractères standard et lisible */
@@ -385,7 +392,7 @@ body {
 }
 
 .legal-content a {
-    color: #d64399 !important; /* Utilise une des couleurs rose/violette du thème pour les liens */
+    color: #d64399 !important; /* On utilise une des couleurs rose/violette du thème pour les liens */
     text-decoration: underline !important;
 }
 
