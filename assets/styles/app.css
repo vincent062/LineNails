@@ -73,7 +73,7 @@ body {
     border-radius: 50%;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px); /* Pour la compatibilité avec Safari */
-    background-color: rgba(163, 153, 153, 0.671); /* Léger fond pour que l'effet de flou soit visible */
+    background-color:white ; /* Léger fond pour que l'effet de flou soit visible */
     margin-bottom: 1rem; /* Ajoute un peu d'espace en dessous */
 }
 
