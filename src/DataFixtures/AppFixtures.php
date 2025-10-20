@@ -21,18 +21,18 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         // === 1. Création de l'utilisateur Admin ===
-        $admin = new User();
-        $admin->setEmail('admin@example.com');
-        $admin->setRoles(['ROLE_ADMIN']);
+        $admin = new User(); //création de l'objet USER
+        $admin->setEmail('admin@example.com'); //informations
+        $admin->setRoles(['ROLE_ADMIN']); //donne les droits à l'Admin
         $admin->setNom('Admin');
         $admin->setPrenom('LineNails');
         $admin->setPassword(
-            $this->passwordHasher->hashPassword(
+            $this->passwordHasher->hashPassword( //mot de passe sécurisé grace à passwordhasher
                 $admin,
                 'password'
             )
         );
-        $manager->persist($admin);
+        $manager->persist($admin); //info à doctrine
         
         // === 2. Création des Catégories ===
         $categories = [];
