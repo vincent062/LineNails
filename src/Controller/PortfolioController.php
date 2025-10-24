@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller; // Définis le namespace de la classe
 
-use App\Entity\Portfolio;
-use App\Form\PortfolioType;
-use App\Repository\PortfolioRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
+use App\Entity\Portfolio; // Entité Doctrine
+use App\Form\PortfolioType; // Formulaire symfony pour créer ou modifier une réalisation
+use App\Repository\PortfolioRepository; //La classe pour récupérer les réalisations depuis la base de données
+use Doctrine\ORM\EntityManagerInterface; // Permet de sauvegarder ou supprimer des entités
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController; // Classe de base pour les controlleurs
+use Symfony\Component\HttpFoundation\Request; // Requéte HTTP entrante
+use Symfony\Component\HttpFoundation\Response; // Réponse HTTP que le controlleur renvois
+use Symfony\Component\Routing\Attribute\Route; // Attribut pour définir les URL du controlleur
+use Symfony\Component\Security\Http\Attribute\IsGranted; // Attribut pour restreindre l'accés 
 
-#[Route('/portfolio')]
-final class PortfolioController extends AbstractController
+#[Route('/portfolio')] // Route permettant d'accéder à portfolio
+final class PortfolioController extends AbstractController 
 {
     #[Route(name: 'app_portfolio_index', methods: ['GET'])]
     public function index(PortfolioRepository $portfolioRepository): Response
     {
         return $this->render('portfolio/index.html.twig', [
-            'portfolios' => $portfolioRepository->findAll(),
+            'portfolios' => $portfolioRepository->findAll(), // Utilise le répertoire pour recupérer toutes les réalisations
         ]);
     }
 
