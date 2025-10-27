@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier mon profil{% endblock %}
+
+{% block body %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            {# Utilise le même style de carte que pour l'enregistrement #}
+            <div class="card shadow-lg register-card">
+                <div class="card-body p-4 p-md-5">
+                    <h1 class="text-center mb-4">Modifier mon profil</h1>
+
+                    {# Affichage des messages flash (succès, erreur...) #}
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+
+                    {{ form_start(profileForm) }}
+
+                        {# Champ Email #}
+                        <div class="mb-3">
+                            {{ form_label(profileForm.newEmail) }}
+                            {{ form_widget(profileForm.newEmail, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(profileForm.newEmail) }}
+                             <div class="form-text">Votre adresse e-mail actuelle est : {{ app.user.email }}</div>
+                        </div>
+
+                        <hr class="my-4">
+
+                         {# Champ Mot de passe actuel #}
+                        <div class="mb-3">
+                            {{ form_row(profileForm.currentPassword, {'attr': {'class': 'form-control'}}) }}
+                             <div class="form-text">Requis uniquement si vous souhaitez changer votre mot de passe.</div>
+                        </div>
+
+                        {# Champ Nouveau mot de passe (géré par RepeatedType) #}
+                        {{ form_row(profileForm.newPassword.first, {'attr': {'class': 'form-control'}}) }}
+                        <div class="mb-3"> {# Ajout d'un margin-bottom pour espacer #}
+                            {{ form_row(profileForm.newPassword.second, {'attr': {'class': 'form-control'}}) }}
+                             <div class="form-text">Laissez vide si vous ne souhaitez pas changer de mot de passe.</div>
+                             {# Affichage de l'erreur globale de répétition s'il y en a une #}
+                            {{ form_errors(profileForm.newPassword) }}
+                        </div>
+
+
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Enregistrer les modifications</button>
+                        </div>
+
+                    {{ form_end(profileForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
