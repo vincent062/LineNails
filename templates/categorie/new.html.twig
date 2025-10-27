@@ -1,11 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Categorie{% endblock %}
+{% block title %}Nouvelle Catégorie{% endblock %}
 
 {% block body %}
-    <h1>Créer une nouvelle catégorie</h1>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            {# --- On ajoute la structure de la carte ici --- #}
+            <div class="card shadow-lg register-card" style="background-color: rgba(0, 0, 0, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                <div class="card-body p-4 p-md-5">
+                    <h1 class="text-center mb-4">Créer une nouvelle catégorie</h1>
 
-    {{ include('categorie/_form.html.twig') }}
+                    {# On inclut le formulaire à l'intérieur de la carte #}
+                    {{ include('categorie/_form.html.twig') }}
 
-    <a href="{{ path('app_categorie_index') }}">Retour à la liste</a>
+                    {# On ajoute le lien retour en dehors du formulaire mais dans la carte #}
+                    <div class="text-center mt-4">
+                        <a href="{{ path('app_categorie_index') }}" class="btn btn-outline-secondary">Retour à la liste</a>
+                    </div>
+                </div>
+            </div>
+             {# --- Fin de la structure de la carte --- #}
+        </div>
+    </div>
+</div>
 {% endblock %}

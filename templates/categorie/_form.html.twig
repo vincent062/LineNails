@@ -1,4 +1,22 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    {# Utilise form_row pour chaque champ pour un meilleur contrôle et applique la classe form-control #}
+    <div class="mb-3">
+        {{ form_row(form.nom, {
+            'label': 'Nom de la catégorie :',
+            'attr': {'class': 'form-control', 'placeholder': 'Ex: Mains'}
+        }) }}
+    </div>
+    <div class="mb-3">
+        {{ form_row(form.ordre_affichage, {
+            'label': 'Ordre d\'affichage :',
+            'attr': {'class': 'form-control', 'placeholder': 'Ex: 1', 'min': 1},
+             'help': 'Un nombre plus petit s\'affiche en premier.'
+        }) }}
+    </div>
+
+
+     {# Style du bouton #}
+    <div class="d-grid mt-4">
+        <button class="btn btn-primary btn-lg">{{ button_label|default('Enregistrer') }}</button>
+    </div>
 {{ form_end(form) }}
