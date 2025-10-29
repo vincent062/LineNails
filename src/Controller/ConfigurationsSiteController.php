@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/configurations/site')]
-#[IsGranted('ROLE_ADMIN')]
+#[IsGranted('ROLE_ADMIN')] // permet de bloquer toutes mes routes en les rendant inaccessibles aux utilisateurs lambda.
 final class ConfigurationsSiteController extends AbstractController
 {
     #[Route(name: 'app_configurations_site_index', methods: ['GET'])]

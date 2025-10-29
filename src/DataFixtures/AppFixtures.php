@@ -21,27 +21,27 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         // === 1. Création de l'utilisateur Admin ===
-        $admin = new User();
-        $admin->setEmail('admin@example.com');
-        $admin->setRoles(['ROLE_ADMIN']);
+        $admin = new User(); //création de l'objet USER
+        $admin->setEmail('admin@example.com'); //informations
+        $admin->setRoles(['ROLE_ADMIN']); // donne les droits à l'admin
         $admin->setNom('Admin');
         $admin->setPrenom('LineNails');
         $admin->setPassword(
-            $this->passwordHasher->hashPassword(
+            $this->passwordHasher->hashPassword( //mot de passe sécurisé grace à passwordHasher
                 $admin,
                 'password'
             )
         );
-        $manager->persist($admin);
+        $manager->persist($admin); // info à doctrine 
         
         // === 2. Création des Catégories ===
         $categories = [];
-        $categoriesData = ['Mains', 'Pieds', 'Cils'];
-        foreach ($categoriesData as $i => $nom) {
-            $categorie = new Categorie();
-            $categorie->setNom($nom);
-            $categorie->setOrdreAffichage($i + 1); 
-            $manager->persist($categorie);
+        $categoriesData = ['Mains', 'Pieds', 'Cils']; //creation d'un tableau pour les catégories
+        foreach ($categoriesData as $i => $nom) { // boucle permettant de parcourir chaque éléments du tableau
+            $categorie = new Categorie(); //création d'un nouvel objet "categorie"
+            $categorie->setNom($nom); //donne un nom à mon objet
+            $categorie->setOrdreAffichage($i + 1);  //définis l'ordre d'affichage avec l'index de la boucle
+            $manager->persist($categorie); //info à doctrine
             $categories[$nom] = $categorie; // Stocker pour une utilisation ultérieure
         }
         
@@ -68,46 +68,46 @@ class AppFixtures extends Fixture
         ];
 
         $services = [];
-        foreach ($servicesData as $serviceData) {
-            $service = new Service();
+        foreach ($servicesData as $serviceData) {  //boucle permettant de parcourir chaque éléments du tableau
+            $service = new Service();  //création d'un nouvel objet
             $service->setNom($serviceData['nom']);
             $service->setPrix($serviceData['prix']);
             $service->setDescription('Description pour ' . $serviceData['nom']);
             $service->setDureeMinutes($serviceData['duree']);
             $service->setEstActif(true);
             // Associer la catégorie
-            if (isset($categories[$serviceData['categorie']])) {
-                $service->setCategorie($categories[$serviceData['categorie']]);
+            if (isset($categories[$serviceData['categorie']])) { //on verifie si la categorie existe bien
+                $service->setCategorie($categories[$serviceData['categorie']]);  //si la categorie existe on la recupere
             }
-            $manager->persist($service);
-            $services[] = $service; // Stocker les services créés
+            $manager->persist($service); //info à doctrine
+            $services[] = $service; //Stocker les services créés
         }
 
         // Création de quelques réalisations pour le portfolio
-         for ($i = 1; $i <= 6; $i++) {
-            $portfolio = new Portfolio();
+         for ($i = 1; $i <= 6; $i++) {  //boucle for qui va s'executer 6 fois
+            $portfolio = new Portfolio();  //création d'un nouvel objet
             $portfolio->setNom('Réalisation ' . $i);
             $portfolio->setDescription('Une description pour la réalisation ' . $i);
 
             // Associer un service au hasard
-            if (!empty($services)) {
-                $portfolio->setService($services[array_rand($services)]);
+            if (!empty($services)) {  //verifie que le tableau services n'est pas vide
+                $portfolio->setService($services[array_rand($services)]);  //prendre un service au hasard et l'associer au portfolio
             }
 
-            $manager->persist($portfolio);
+            $manager->persist($portfolio);  //info à doctrine
         }
 
  
         // Création de la configuration du site 
-        $config = new ConfigurationsSite();
-        $config->setAdressePostale('123 Rue de la Beauté, 75001 Paris');
+        $config = new ConfigurationsSite();  //création d'un nouvel objet
+        $config->setAdressePostale('123 Rue de la Beauté, 75001 Paris');  //informations
         $config->setTelephone('01 23 45 67 89');
         $config->setEmailContact('contact@linenails.com');
         $config->setHorairesOuverture('Lundi - Vendredi : 9h - 19h');
         $config->setUrlPageFacebook('https://facebook.com/linenails');
         $config->setUrlPageInstgram('https://instagram.com/linenails');
         $config->setUrlPriseRdvFacebook('https://facebook.com/linenails/book');
-        $manager->persist($config);
+        $manager->persist($config);  //info à doctrine
 
         // À la fin, flush enverra tout en base de données.
         $manager->flush();
