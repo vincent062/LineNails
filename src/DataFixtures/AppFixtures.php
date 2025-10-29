@@ -23,16 +23,28 @@ class AppFixtures extends Fixture
         // === 1. Création de l'utilisateur Admin ===
         $admin = new User(); //création de l'objet USER
         $admin->setEmail('admin@example.com'); //informations
+<<<<<<< HEAD
         $admin->setRoles(['ROLE_ADMIN']); // donne les droits à l'admin
         $admin->setNom('Admin');
         $admin->setPrenom('LineNails');
         $admin->setPassword(
             $this->passwordHasher->hashPassword( //mot de passe sécurisé grace à passwordHasher
+=======
+        $admin->setRoles(['ROLE_ADMIN']); //donne les droits à l'Admin
+        $admin->setNom('Admin');
+        $admin->setPrenom('LineNails');
+        $admin->setPassword(
+            $this->passwordHasher->hashPassword( //mot de passe sécurisé grace à passwordhasher
+>>>>>>> 23e85ed827b2afa1b5747efa6b727114dfe43db1
                 $admin,
                 'password'
             )
         );
+<<<<<<< HEAD
         $manager->persist($admin); // info à doctrine 
+=======
+        $manager->persist($admin); //info à doctrine
+>>>>>>> 23e85ed827b2afa1b5747efa6b727114dfe43db1
         
         // === 2. Création des Catégories ===
         $categories = [];
