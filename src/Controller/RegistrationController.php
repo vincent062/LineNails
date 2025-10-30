@@ -3,27 +3,29 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Form\RegistrationFormType;//Formulaire d'inscription
+use Doctrine\ORM\EntityManagerInterface;//Permet de sauvegarder en BDD
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\HttpFoundation\Request;//Gére les requétes
+use Symfony\Component\HttpFoundation\Response;//Gére les réponses
+use Symfony\Component\Mailer\MailerInterface;//Envois d'email
 use Symfony\Component\Mime\Email;
-use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Routing\Attribute\Route;//Définis l'URL
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;//Crypter les mots de passe
+use Symfony\Component\Uid\Uuid;//Génére des identifiants aléatoires
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/register', name: 'app_register')]
+    #[Route('/register', name: 'app_register')]// Crée l'URL de ma page
 
+     // Injection de dépendances avec Request
      public function register(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer, UserPasswordHasherInterface $passwordHasher): Response
     {    
         
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+        $user = new User();//nouvel objet user vide
+        $form = $this->createForm(RegistrationFormType::class, $user);//
+
+        $form->handleRequest($request);//Récupére les données 
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Générer un mot de passe aléatoire et sécurisé
@@ -52,12 +54,12 @@ class RegistrationController extends AbstractController
 
             // Création et envoi de l'e-mail
             $email = (new Email())
-                ->from('no-reply@LineNails.com')
-                ->to($user->getEmail())
+                ->from('no-reply@LineNails.com')//Définir l'expediteur
+                ->to($user->getEmail())//Récupération de l'email du destinataire
                 ->subject('Confirmation de votre demande de rendez-vous')
                 ->html($emailBody);
 
-            $mailer->send($email);
+            $mailer->send($email);//Envoie de l'email
 
             $this->addFlash('success', 'Votre demande de rendez-vous a bien été envoyée ! Un e-mail de confirmation vous a été adressé.');
 

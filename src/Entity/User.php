@@ -1,29 +1,29 @@
 <?php
 // src/Entity/User.php
 
-namespace App\Entity;
+namespace App\Entity;//Namespace de l'entité
 
-use App\Repository\UserRepository;
-use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\UserRepository;//Importation de la classe UserRepository
+use Doctrine\ORM\Mapping as ORM;//Outils doctrine pour mapper la classe vers la BDD
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;//On s'assure que la valeur est unique
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;//
+use Symfony\Component\Security\Core\User\UserInterface;//interface
+use Symfony\Component\Validator\Constraints as Assert;//Outils de validation
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Entity(repositoryClass: UserRepository::class)]//Annotation de l'entité
 #[ORM\Table(name: '`user`')]
-#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email.')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+#[UniqueEntity(fields: ['email'], message: 'Il existe déjà un compte avec cet email.')]//Régle de validation
+class User implements UserInterface, PasswordAuthenticatedUserInterface//Défini la classe USER
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    private ?int $id = null;
+    #[ORM\Id]//Annotation de l'attribut id
+    #[ORM\GeneratedValue]//Annotation de l'ORM pour l'auto-incrémentation
+    #[ORM\Column]//Annotation de l'ORM pour la colonne
+    private ?int $id = null;// Attribut id de type null
 
-    #[ORM\Column(length: 255)]
-    #[Assert\NotBlank(message: 'Veuillez renseigner votre nom.')]
-    #[Assert\Length(min: 2, max: 255)]
-    private ?string $nom = null;
+    #[ORM\Column(length: 255)]// Annotation de l'ORM pour la colonne avec une longueur de 255
+    #[Assert\NotBlank(message: 'Veuillez renseigner votre nom.')]//Régle de validation
+    #[Assert\Length(min: 2, max: 255)]//Régle de validation
+    private ?string $nom = null;//Attribut nom de type String qui peut etre null
 
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank(message: 'Veuillez renseigner votre prénom.')]
@@ -51,14 +51,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getNom(): ?string//Récupére la valeur de la propriété nom
     {
-        return $this->nom;
+        return $this->nom;//Retourne l'attribur nom
     }
 
-    public function setNom(string $nom): static
+    public function setNom(string $nom): static//Permet de modifier la propriéré
     {
-        $this->nom = $nom;
+        $this->nom = $nom;//Propriété de l'objet
 
         return $this;
     }
@@ -99,23 +99,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * A visual identifier that represents this user.
-     *
-     * @see UserInterface
-     */
+    
     public function getUserIdentifier(): string
     {
         return (string) $this->email;
     }
 
-    /**
-     * @see UserInterface
-     */
+    
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
+       
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -128,9 +122,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see PasswordAuthenticatedUserInterface
-     */
+    
     public function getPassword(): ?string
     {
         return $this->password;
@@ -143,12 +135,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @see UserInterface
-     */
+   
     public function eraseCredentials(): void
     {
-        // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        
     }
 }
