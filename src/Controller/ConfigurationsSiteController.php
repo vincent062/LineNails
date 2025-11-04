@@ -2,17 +2,17 @@
 
 namespace App\Controller;
 
-use App\Entity\ConfigurationsSite;
-use App\Form\ConfigurationsSiteType;
-use App\Repository\ConfigurationsSiteRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
+use App\Entity\ConfigurationsSite;// Entité Doctrine
+use App\Form\ConfigurationsSiteType;// Formulaire symfony pour créer ou modifier une réalisation
+use App\Repository\ConfigurationsSiteRepository;//La classe pour récupérer les réalisations depuis la base de données
+use Doctrine\ORM\EntityManagerInterface;// Permet de sauvegarder ou supprimer des entités
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;// Classe de base pour les controlleurs
+use Symfony\Component\HttpFoundation\Request;// Requéte HTTP entrante
+use Symfony\Component\HttpFoundation\Response;// Réponse HTTP que le controlleur renvois
+use Symfony\Component\Routing\Attribute\Route;// Attribut pour définir les URL du controlleur
+use Symfony\Component\Security\Http\Attribute\IsGranted;// Attribut pour restreindre l'accés 
 
-#[Route('/configurations/site')]
+#[Route('/configurations/site')]// Route permettant d'accéder à configurationsSite
 #[IsGranted('ROLE_ADMIN')] // permet de bloquer toutes mes routes en les rendant inaccessibles aux utilisateurs lambda.
 final class ConfigurationsSiteController extends AbstractController
 {
@@ -20,7 +20,7 @@ final class ConfigurationsSiteController extends AbstractController
     public function index(ConfigurationsSiteRepository $configurationsSiteRepository): Response
     {
         return $this->render('configurations_site/index.html.twig', [
-            'configurations_sites' => $configurationsSiteRepository->findAll(),
+            'configurations_sites' => $configurationsSiteRepository->findAll(),// Utilise le répertoire pour recupérer toutes les réalisations
         ]);
     }
 
